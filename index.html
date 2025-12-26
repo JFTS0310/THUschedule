@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧型動態排課系統 (雲端旗艦版)</title>
+    <title>智慧型動態排課系統 (雲端修復版)</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -176,7 +176,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            /* For HTML2Canvas capture */
             position: relative;
         }
 
@@ -295,23 +294,17 @@
         .avail-table td, .avail-table th { padding: 2px; border: 1px solid #eee; }
         .avail-checkbox { transform: scale(1.2); cursor: pointer; }
 
-        /* 新增：使用者與登入相關樣式 */
         .user-status { font-size: 0.8rem; display: flex; align-items: center; margin-right: 10px; }
         .user-avatar { width: 24px; height: 24px; border-radius: 50%; margin-right: 5px; background: #ddd; }
         .auth-buttons { display: flex; gap: 5px; }
         #firebaseUserDisplay { display: none; align-items: center; background: #f0f0f0; padding: 2px 8px; border-radius: 12px; }
         
-        /* 截圖時強制顯示的 CSS 修正 */
-        .screenshot-mode .timetable-container {
-            overflow: visible !important;
-            height: auto !important;
-        }
     </style>
 </head>
 <body>
 
 <div class="app-container" id="appContainer">
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <div class="level is-mobile mb-3">
             <div class="level-left">
                 <h2 class="title is-6 mb-0" style="font-size: 1rem;">📚 課程管理</h2>
@@ -381,6 +374,10 @@
                         <span>登入</span>
                     </button>
                     
+                    <button id="btnCloudLoad" class="button is-warning is-light" style="font-size: 0.75rem; display:none;" onclick="loadMyCloudData()">
+                        ☁️ 讀取
+                    </button>
+
                     <button id="btnCloudSave" class="button is-link is-light" style="font-size: 0.75rem; display:none;" onclick="saveToCloud()">
                         ☁️ 儲存
                     </button>
@@ -402,7 +399,7 @@
                         <div class="dropdown-menu" role="menu">
                             <div class="dropdown-content">
                                 <a class="dropdown-item" onclick="exportImage('png')">下載 PNG 圖片</a>
-                                <a class="dropdown-item" onclick="exportImage('pdf')">下載 PDF 文件</a>
+                                <a class="dropdown-item" onclick="exportImage('pdf')">下載 PDF 文件 (A4)</a>
                             </div>
                         </div>
                     </div>
@@ -528,7 +525,6 @@
         measurementId: "G-G24008NCWR"
     };
 
-    // 使用 Compat 初始化
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
     const auth = firebase.auth();
@@ -536,7 +532,6 @@
 
     let currentUser = null;
 
-    // 監聽登入狀態
     auth.onAuthStateChanged((user) => {
         currentUser = user;
         updateAuthUI(user);
@@ -546,6 +541,7 @@
         const btnLogin = document.getElementById('btnLogin');
         const btnLogout = document.getElementById('btnLogout');
         const btnCloudSave = document.getElementById('btnCloudSave');
+        const btnCloudLoad = document.getElementById('btnCloudLoad'); // 新增
         const btnCloudShare = document.getElementById('btnCloudShare');
         const userDisplay = document.getElementById('firebaseUserDisplay');
         const userAvatar = document.getElementById('userAvatar');
@@ -555,6 +551,7 @@
             btnLogin.style.display = 'none';
             btnLogout.style.display = 'inline-flex';
             btnCloudSave.style.display = 'inline-flex';
+            btnCloudLoad.style.display = 'inline-flex'; // 顯示讀取
             btnCloudShare.style.display = 'inline-flex';
             userDisplay.style.display = 'flex';
             userAvatar.src = user.photoURL;
@@ -563,6 +560,7 @@
             btnLogin.style.display = 'inline-flex';
             btnLogout.style.display = 'none';
             btnCloudSave.style.display = 'none';
+            btnCloudLoad.style.display = 'none';
             btnCloudShare.style.display = 'none';
             userDisplay.style.display = 'none';
         }
@@ -571,7 +569,16 @@
     function handleLogin() {
         auth.signInWithPopup(provider).catch((error) => {
             console.error(error);
-            Swal.fire('登入失敗', error.message, 'error');
+            // 特別處理未授權網域錯誤
+            if(error.code === 'auth/unauthorized-domain') {
+                Swal.fire({
+                    title: '登入失敗：網域未授權',
+                    html: '<p style="text-align:left;">Firebase 安全性設定阻擋了此請求。</p><br><p style="text-align:left;font-size:0.9em;">請至 <a href="https://console.firebase.google.com/" target="_blank">Firebase Console</a> > Authentication > Settings > Authorized Domains，將您目前的網域 (例如 github.io) 加入白名單。</p>',
+                    icon: 'error'
+                });
+            } else {
+                Swal.fire('登入失敗', error.message, 'error');
+            }
         });
     }
 
@@ -581,7 +588,6 @@
         });
     }
 
-    // 儲存到 Firebase
     async function saveToCloud() {
         if (!currentUser) return;
         
@@ -604,11 +610,16 @@
             Swal.fire('儲存成功', '您的課表已儲存至雲端。', 'success');
         } catch (e) {
             console.error(e);
-            Swal.fire('儲存失敗', '請確認您的網路連線或權限設定。', 'error');
+            Swal.fire('儲存失敗', '請確認 Firebase Firestore Rules 已開啟寫入權限。', 'error');
         }
     }
 
-    // 產生雲端連結
+    // 新增：主動讀取雲端資料功能
+    async function loadMyCloudData() {
+        if (!currentUser) return;
+        loadFromCloud(currentUser.uid);
+    }
+
     function shareCloudLink() {
         if (!currentUser) return;
         const url = window.location.origin + window.location.pathname + "?uid=" + currentUser.uid;
@@ -622,7 +633,6 @@
         });
     }
 
-    // 從 Firebase 載入
     async function loadFromCloud(uid) {
         try {
             Swal.fire({ title: '正在載入雲端課表...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
@@ -637,18 +647,17 @@
                 if (data.settings) settings = data.settings;
                 if (data.collapsedTeachers) collapsedTeachers = data.collapsedTeachers;
                 
-                // 儲存並重新渲染
                 save();
                 render();
                 
                 let owner = data.ownerName || "未知使用者";
                 Swal.fire('載入成功', `已成功載入 ${owner} 的課表。`, 'success');
             } else {
-                Swal.fire('找不到資料', '該連結無效或資料已被刪除。', 'error');
+                Swal.fire('找不到資料', '雲端尚無資料或權限不足。', 'warning');
             }
         } catch (e) {
             console.error(e);
-            Swal.fire('載入錯誤', '讀取資料時發生錯誤。', 'error');
+            Swal.fire('載入錯誤', '讀取資料時發生錯誤，請檢查 Firestore Rules。', 'error');
         }
     }
 
@@ -682,13 +691,37 @@
         sat: true, sun: false, wd: [true,true,true,true], we: [true,true,true,true]
     };
 
-    // --- 新增：截圖與PDF輸出功能 ---
+    // --- 修復：截圖與PDF輸出功能 (防止擠壓版 v2) ---
     function exportImage(type) {
         const element = document.getElementById('captureTarget');
-        // 暫時將 overflow 屬性移除以確保完整截圖
-        element.style.overflow = 'visible';
-        element.style.height = 'auto';
+        const appContainer = document.getElementById('appContainer');
+        const sidebar = document.getElementById('sidebar');
         
+        // 記錄原始樣式
+        const originalWidth = element.style.width;
+        const originalHeight = element.style.height;
+        const originalOverflow = element.style.overflow;
+        const originalAppWidth = appContainer.style.width;
+        const originalSidebarDisplay = sidebar.style.display;
+
+        // 1. 隱藏側邊欄，避免佔位
+        sidebar.style.display = 'none';
+
+        // 2. 強制展開容器至 1920px (Full HD)，確保寬度足夠
+        const targetWidth = 1920; 
+        
+        // 暫時撐開 body 和 appContainer
+        document.body.style.width = targetWidth + 'px';
+        appContainer.style.width = targetWidth + 'px';
+        
+        // 讓 table 容器佔滿全寬
+        element.style.width = '100%'; 
+        element.style.height = 'auto'; 
+        element.style.overflow = 'visible';
+        
+        // 重新渲染以觸發 resize 事件 (計算欄位寬度)
+        render();
+
         Swal.fire({
             title: '處理中...',
             text: '正在產生圖片，請稍候',
@@ -696,68 +729,79 @@
             didOpen: () => Swal.showLoading()
         });
 
-        html2canvas(element, { scale: 2 }).then(canvas => {
-            // 恢復原本樣式
-            element.style.overflow = '';
-            element.style.height = '100%';
+        // 稍微延遲讓 CSS 生效
+        setTimeout(() => {
+            html2canvas(element, { 
+                scale: 2, 
+                useCORS: true,
+                width: targetWidth, 
+                windowWidth: targetWidth 
+            }).then(canvas => {
+                // 恢復原本樣式
+                sidebar.style.display = originalSidebarDisplay;
+                element.style.width = originalWidth;
+                element.style.height = originalHeight;
+                element.style.overflow = originalOverflow;
+                document.body.style.width = '';
+                appContainer.style.width = originalAppWidth;
+                render(); 
 
-            if (type === 'png') {
-                const link = document.createElement('a');
-                link.download = `我的課表_${new Date().toISOString().slice(0,10)}.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-                Swal.close();
-            } else if (type === 'pdf') {
-                const { jsPDF } = window.jspdf;
-                const imgData = canvas.toDataURL('image/png');
-                const imgWidth = 210; // A4 width in mm
-                const pageHeight = 297; // A4 height in mm
-                const imgHeight = canvas.height * imgWidth / canvas.width;
-                
-                const doc = new jsPDF('p', 'mm');
-                let heightLeft = imgHeight;
-                let position = 0;
+                if (type === 'png') {
+                    const link = document.createElement('a');
+                    link.download = `我的課表_${new Date().toISOString().slice(0,10)}.png`;
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                    Swal.close();
+                } else if (type === 'pdf') {
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF('l', 'mm', 'a4'); // A4 橫向
+                    
+                    const imgData = canvas.toDataURL('image/png');
+                    const imgProps = doc.getImageProperties(imgData);
+                    
+                    const pdfWidth = doc.internal.pageSize.getWidth();
+                    const pdfHeight = doc.internal.pageSize.getHeight();
+                    
+                    // 計算縮放比例
+                    const ratio = pdfWidth / imgProps.width;
+                    const imgHeight = imgProps.height * ratio;
+                    
+                    // 垂直置中
+                    let y = (pdfHeight - imgHeight) / 2;
+                    if (y < 0) y = 0; // 防止超出頂部
 
-                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-
-                // 如果圖片太長，建立多頁 (雖然課表通常一頁就夠)
-                while (heightLeft >= 0) {
-                    position = heightLeft - imgHeight;
-                    doc.addPage();
-                    doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
+                    doc.addImage(imgData, 'PNG', 0, y, pdfWidth, imgHeight);
+                    doc.save(`我的課表_${new Date().toISOString().slice(0,10)}.pdf`);
+                    Swal.close();
                 }
-                
-                doc.save(`我的課表_${new Date().toISOString().slice(0,10)}.pdf`);
-                Swal.close();
-            }
-        }).catch(err => {
-            console.error(err);
-            element.style.overflow = '';
-            element.style.height = '100%';
-            Swal.fire('錯誤', '圖片產生失敗', 'error');
-        });
+            }).catch(err => {
+                console.error(err);
+                // 發生錯誤也要恢復
+                sidebar.style.display = originalSidebarDisplay;
+                element.style.width = originalWidth;
+                element.style.height = originalHeight;
+                element.style.overflow = originalOverflow;
+                document.body.style.width = '';
+                appContainer.style.width = originalAppWidth;
+                render();
+                Swal.fire('錯誤', '圖片產生失敗', 'error');
+            });
+        }, 500); // 增加延遲確保渲染完成
     }
 
-    // --- 修改：URL 載入邏輯 (同時支援 LZString 與 Firebase UID) ---
     function checkUrlParams() {
         const urlParams = new URLSearchParams(window.location.search);
         const uid = urlParams.get('uid');
         const compressed = urlParams.get('data');
 
         if (uid) {
-            // 優先讀取 Firebase
             loadFromCloud(uid);
-            // 清除 URL 參數以免重整後重複觸發
             window.history.replaceState({}, document.title, window.location.pathname);
         } else if (compressed) {
-            // 舊版 LZString 還原
             loadFromLZString(compressed);
         }
     }
 
-    // 原本的 shareToUrl 功能 (保留作為備份方案)
     function shareToUrl() {
         let data = {
             courses: courses,
@@ -808,7 +852,6 @@
                 timer: 1500,
                 showConfirmButton: false
             });
-            // 清除 URL
             window.history.replaceState({}, document.title, window.location.pathname);
         } catch (e) {
             console.error(e);
@@ -1145,10 +1188,8 @@
         let days = ['一','二','三','四','五','六','日'];
         let dayCols = [];
         for(let d=1; d<=7; d++) {
-            // 修改：平日(1-5) 強制顯示，週末(6-7) 依設定
             if(d<=5 || (d==6 && settings.sat) || (d==7 && settings.sun)) {
                 let gradesToShow = settings.wd; 
-                // 如果是平日，強制全開 [true, true, true, true]
                 let currentWd = (d <= 5) ? [true,true,true,true] : settings.wd;
 
                 for(let g=1; g<=4; g++) { if(currentWd[g-1]) dayCols.push({d:d, g:g}); }

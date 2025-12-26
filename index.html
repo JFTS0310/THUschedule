@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智慧型動態排課系統 (雲端修復版)</title>
+    <title>東海大學教職員排課模擬器</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -375,7 +375,7 @@
                     </button>
                     
                     <button id="btnCloudLoad" class="button is-warning is-light" style="font-size: 0.75rem; display:none;" onclick="loadMyCloudData()">
-                        ☁️ 讀取
+                        ☁️ 讀取雲端存檔
                     </button>
 
                     <button id="btnCloudSave" class="button is-link is-light" style="font-size: 0.75rem; display:none;" onclick="saveToCloud()">
@@ -511,7 +511,6 @@
       </footer>
     </div>
 </div>
-  
 
 <script>
     // --- Firebase 初始化區塊 ---
@@ -551,7 +550,7 @@
             btnLogin.style.display = 'none';
             btnLogout.style.display = 'inline-flex';
             btnCloudSave.style.display = 'inline-flex';
-            btnCloudLoad.style.display = 'inline-flex'; // 顯示讀取
+            btnCloudLoad.style.display = 'inline-flex'; // 顯示讀取按鈕
             btnCloudShare.style.display = 'inline-flex';
             userDisplay.style.display = 'flex';
             userAvatar.src = user.photoURL;
@@ -569,7 +568,6 @@
     function handleLogin() {
         auth.signInWithPopup(provider).catch((error) => {
             console.error(error);
-            // 特別處理未授權網域錯誤
             if(error.code === 'auth/unauthorized-domain') {
                 Swal.fire({
                     title: '登入失敗：網域未授權',
@@ -614,7 +612,7 @@
         }
     }
 
-    // 新增：主動讀取雲端資料功能
+    // 新增：主動讀取雲端資料功能 (修復用戶無法讀取的問題)
     async function loadMyCloudData() {
         if (!currentUser) return;
         loadFromCloud(currentUser.uid);
@@ -691,60 +689,60 @@
         sat: true, sun: false, wd: [true,true,true,true], we: [true,true,true,true]
     };
 
-    // --- 修復：截圖與PDF輸出功能 (防止擠壓版 v2) ---
+    // --- 徹底修復：防止擠壓的截圖功能 (Ghost Element / 強制寬度法) ---
     function exportImage(type) {
         const element = document.getElementById('captureTarget');
-        const appContainer = document.getElementById('appContainer');
         const sidebar = document.getElementById('sidebar');
-        
-        // 記錄原始樣式
-        const originalWidth = element.style.width;
-        const originalHeight = element.style.height;
-        const originalOverflow = element.style.overflow;
-        const originalAppWidth = appContainer.style.width;
+        const appContainer = document.getElementById('appContainer');
+
+        // 1. 記錄原始樣式
         const originalSidebarDisplay = sidebar.style.display;
+        const originalContainerWidth = appContainer.style.width;
+        const originalContainerMaxWidth = appContainer.style.maxWidth;
+        const originalElementWidth = element.style.width;
+        const originalElementOverflow = element.style.overflow;
 
-        // 1. 隱藏側邊欄，避免佔位
+        // 2. 準備「寬版模式」樣式：隱藏側邊欄，強制主容器極寬 (2000px)，移除最大寬度限制
         sidebar.style.display = 'none';
+        
+        // 重要：強制容器寬度足夠大，讓 Flexbox 不會壓縮表格
+        // 設定為 2000px 可以容納大部分的表格內容而不換行
+        appContainer.style.width = '2000px'; 
+        appContainer.style.maxWidth = 'none'; 
 
-        // 2. 強制展開容器至 1920px (Full HD)，確保寬度足夠
-        const targetWidth = 1920; 
-        
-        // 暫時撐開 body 和 appContainer
-        document.body.style.width = targetWidth + 'px';
-        appContainer.style.width = targetWidth + 'px';
-        
-        // 讓 table 容器佔滿全寬
-        element.style.width = '100%'; 
-        element.style.height = 'auto'; 
+        // 確保表格本身也是寬的
+        element.style.width = '2000px';
         element.style.overflow = 'visible';
         
-        // 重新渲染以觸發 resize 事件 (計算欄位寬度)
+        // 確保背景色正確 (避免因為變寬而出現透明區域)
+        document.body.style.backgroundColor = '#e0e0e0';
+
+        // 3. 觸發重新渲染以計算新的寬度布局
         render();
 
         Swal.fire({
             title: '處理中...',
-            text: '正在產生圖片，請稍候',
+            text: '正在產生高解析度圖片，請稍候',
             allowOutsideClick: false,
             didOpen: () => Swal.showLoading()
         });
 
-        // 稍微延遲讓 CSS 生效
+        // 4. 等待瀏覽器重新排版 (Reflow) 後截圖
         setTimeout(() => {
             html2canvas(element, { 
-                scale: 2, 
+                scale: 2, // 高解析度
                 useCORS: true,
-                width: targetWidth, 
-                windowWidth: targetWidth 
+                width: 2000, // 告訴 html2canvas 畫布寬度就是 2000
+                windowWidth: 2000 // 模擬視窗寬度
             }).then(canvas => {
-                // 恢復原本樣式
+                // 5. 恢復原始樣式
                 sidebar.style.display = originalSidebarDisplay;
-                element.style.width = originalWidth;
-                element.style.height = originalHeight;
-                element.style.overflow = originalOverflow;
-                document.body.style.width = '';
-                appContainer.style.width = originalAppWidth;
-                render(); 
+                appContainer.style.width = originalContainerWidth;
+                appContainer.style.maxWidth = originalContainerMaxWidth;
+                element.style.width = originalElementWidth;
+                element.style.overflow = originalElementOverflow;
+                document.body.style.backgroundColor = '';
+                render(); // 重新渲染回正常模式
 
                 if (type === 'png') {
                     const link = document.createElement('a');
@@ -754,7 +752,8 @@
                     Swal.close();
                 } else if (type === 'pdf') {
                     const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF('l', 'mm', 'a4'); // A4 橫向
+                    // 使用 A4 橫向 (Landscape)
+                    const doc = new jsPDF('l', 'mm', 'a4');
                     
                     const imgData = canvas.toDataURL('image/png');
                     const imgProps = doc.getImageProperties(imgData);
@@ -762,7 +761,7 @@
                     const pdfWidth = doc.internal.pageSize.getWidth();
                     const pdfHeight = doc.internal.pageSize.getHeight();
                     
-                    // 計算縮放比例
+                    // 計算縮放比例：以 PDF 寬度為基準，等比例縮放圖片
                     const ratio = pdfWidth / imgProps.width;
                     const imgHeight = imgProps.height * ratio;
                     
@@ -778,15 +777,15 @@
                 console.error(err);
                 // 發生錯誤也要恢復
                 sidebar.style.display = originalSidebarDisplay;
-                element.style.width = originalWidth;
-                element.style.height = originalHeight;
-                element.style.overflow = originalOverflow;
-                document.body.style.width = '';
-                appContainer.style.width = originalAppWidth;
+                appContainer.style.width = originalContainerWidth;
+                appContainer.style.maxWidth = originalContainerMaxWidth;
+                element.style.width = originalElementWidth;
+                element.style.overflow = originalElementOverflow;
+                document.body.style.backgroundColor = '';
                 render();
                 Swal.fire('錯誤', '圖片產生失敗', 'error');
             });
-        }, 500); // 增加延遲確保渲染完成
+        }, 100); 
     }
 
     function checkUrlParams() {

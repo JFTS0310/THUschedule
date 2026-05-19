@@ -596,15 +596,43 @@ body.dark-mode .course-block-preview {
         height: 22px;
     }
 
-    /* 模態視窗寬度調整 */
+    /* 模態視窗：固定高度讓 footer 永遠可見、body 可捲動 */
     .modal-card {
         width: 96vw !important;
         max-width: 96vw !important;
-        margin: 5px;
+        margin: 10px auto !important;
+        max-height: 88vh !important;
+        max-height: 88dvh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 10px !important;
     }
 
+    .modal-card-head {
+        flex-shrink: 0 !important;
+        padding: 10px 14px !important;
+    }
+
+    .modal-card-body {
+        flex: 1 1 auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        min-height: 0 !important;
+        padding: 12px 14px !important;
+    }
+
+    .modal-card-foot {
+        flex-shrink: 0 !important;
+        padding: 10px 14px !important;
+        justify-content: flex-end !important;
+    }
+
+    /* 歡迎選擇模式的視窗 */
     #modeSelectionModal .modal-content {
         width: 95vw !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+        border-radius: 10px !important;
     }
 
     /* 手機版側欄觸發按鈕 */

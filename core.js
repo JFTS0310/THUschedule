@@ -252,11 +252,13 @@ function redo() {
     if (typeof updateUndoRedoUI === 'function') updateUndoRedoUI();
 }
 
-let apiEndpoint = './api.php'; 
+let apiEndpoint = './api.php';
+let staticDataEndpoint = './schedule_data.json';
 let isNasSyncActive = false;
+let isStaticMode = false;
 let syncInterval = null;
 let lastServerTimestamp = 0;
-let autoSaveTimeout = null; 
+let autoSaveTimeout = null;
 
 function fetchWithTimeout(url, options = {}, timeout = 5000) {
     const controller = new AbortController();
@@ -274,7 +276,7 @@ function autoInitNasSync() {
     .then(res => { if(!res.ok) throw new Error(res.status); return res.json(); })
     .then(data => {
         if(btn) btn.classList.remove('is-loading');
-        isNasSyncActive = true; updateSyncUI('active');
+        isNasSyncActive = true; isStaticMode = false; updateSyncUI('active');
         if (data.status !== 'empty' && data.timestamp > 0) {
             loadFromNasData(data); lastServerTimestamp = data.timestamp || 0;
             const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
@@ -287,25 +289,46 @@ function autoInitNasSync() {
         syncInterval = setInterval(checkForUpdates, 5000);
     })
     .catch(err => {
-        if(btn) btn.classList.remove('is-loading');
-        isNasSyncActive = false; updateSyncUI('error', '離線');
+        // api.php 無法連線，嘗試直接讀取靜態 schedule_data.json
+        fetchWithTimeout(staticDataEndpoint, {}, 3000)
+        .then(res => { if(!res.ok) throw new Error(res.status); return res.json(); })
+        .then(data => {
+            if(btn) btn.classList.remove('is-loading');
+            if (data.timestamp > 0) {
+                isStaticMode = true;
+                loadFromNasData(data); lastServerTimestamp = data.timestamp || 0;
+                updateSyncUI('waiting', '靜態模式');
+                const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+                Toast.fire({ icon: 'info', title: '已載入靜態資料 (唯讀)' });
+            }
+        })
+        .catch(() => {
+            if(btn) btn.classList.remove('is-loading');
+            isNasSyncActive = false; isStaticMode = false; updateSyncUI('error', '離線');
+        });
     });
 }
 
 function manualLoadFromNAS() {
     if(!settings.enableNas) return;
-    Swal.fire({ title: '從 NAS 下載課表', text: '這將會強制覆蓋目前的畫面，確定執行？', icon: 'warning', showCancelButton: true, confirmButtonText: '下載並覆蓋', cancelButtonText: '取消' }).then((result) => {
+    const title = isStaticMode ? '重新載入靜態資料' : '從 NAS 下載課表';
+    Swal.fire({ title: title, text: '這將會強制覆蓋目前的畫面，確定執行？', icon: 'warning', showCancelButton: true, confirmButtonText: '下載並覆蓋', cancelButtonText: '取消' }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire({ title: '連線中...', didOpen: () => Swal.showLoading() });
-            fetchWithTimeout(apiEndpoint, {}, 5000).then(res => res.json()).then(data => {
-                if (data.status !== 'empty') { loadFromNasData(data); lastServerTimestamp = data.timestamp || 0; Swal.fire('載入成功', '已同步 NAS 最新資料', 'success'); if(!isNasSyncActive) { isNasSyncActive = true; updateSyncUI('active'); syncInterval = setInterval(checkForUpdates, 5000); } } else { Swal.fire('NAS 是空的', '伺服器上還沒有任何存檔', 'info'); }
-            }).catch(err => { Swal.fire('下載失敗', '無法連線到 api.php: ' + err.message, 'error'); });
+            const endpoint = isStaticMode ? staticDataEndpoint : apiEndpoint;
+            fetchWithTimeout(endpoint, {}, 5000).then(res => res.json()).then(data => {
+                if (data.status !== 'empty' && data.timestamp > 0) {
+                    loadFromNasData(data); lastServerTimestamp = data.timestamp || 0;
+                    Swal.fire('載入成功', isStaticMode ? '已重新載入靜態資料' : '已同步 NAS 最新資料', 'success');
+                    if(!isNasSyncActive && !isStaticMode) { isNasSyncActive = true; updateSyncUI('active'); syncInterval = setInterval(checkForUpdates, 5000); }
+                } else { Swal.fire('資料為空', '伺服器上還沒有任何存檔', 'info'); }
+            }).catch(err => { Swal.fire('載入失敗', '無法取得資料: ' + err.message, 'error'); });
         }
     });
 }
 
 function autoSaveToNAS_Silent() {
-    if (isReadOnly || !settings.enableNas || !isNasSyncActive) return;
+    if (isReadOnly || !settings.enableNas || !isNasSyncActive || isStaticMode) return;
     
     const txt = document.getElementById('nasStatusText');
     if (txt) txt.innerText = '同步中...'; 

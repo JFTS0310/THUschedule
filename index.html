@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>東海電機排課模擬器 by HC (v3.30 Excel 智慧解析版)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="modal is-active" id="modeSelectionModal" style="z-index: 9999;">
+    <div class="modal-background" style="background-color: rgba(0,0,0,0.9);"></div>
+    <div class="modal-content" style="width: 600px; max-width: 90vw;">
+        <div class="box mode-selection-content">
+            <h1 class="title is-4 mb-5">歡迎使用 東海電機排課模擬器 by HC (v3.30)</h1>
+            <p class="subtitle is-6 mb-5">請選擇使用模式</p>
+            <div class="columns">
+                <div class="column">
+                    <div class="mode-card" onclick="selectReadOnlyMode()">
+                        <div class="mode-icon"><i class="fas fa-eye"></i></div>
+                        <h3 class="title is-5">唯讀模式</h3>
+                        <p class="is-size-7 has-text-grey">僅供檢視，無法編輯。</p>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="mode-card" onclick="selectEditMode()">
+                        <div class="mode-icon"><i class="fas fa-edit"></i></div>
+                        <h3 class="title is-5">編輯模式</h3>
+                        <p class="is-size-7 has-text-grey">完整功能，可編輯、儲存。<br><strong>需要輸入密碼。</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 手機版側欄遮罩 -->
+<div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileSidebar()"></div>
+
+<div class="app-container" id="appContainer">
+    <div class="sidebar edit-only" id="sidebar">
+        <div class="level is-mobile mb-3">
+            <div class="level-left">
+                <h2 class="title is-6 mb-0" style="font-size: 1rem;">📚 課程管理</h2>
+                <div class="dropdown is-hoverable ml-2 edit-only">
+                    <div class="dropdown-trigger">
+                        <button class="button is-small is-ghost px-1" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span class="icon is-small"><i class="fas fa-ellipsis-v"></i></span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                            <a href="#" class="dropdown-item" onclick="toggleDeptReqs()">⚡ 切換: 電機系校必修</a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item has-text-danger" onclick="clearScheduleOnly()">🗑️ 清除課表 (保留列表)</a>
+                            <a href="#" class="dropdown-item has-text-danger" onclick="clearAllData()">🧨 清除所有資料</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="level-right"><button class="button is-primary is-small is-rounded edit-only" style="font-size: 0.75rem;" onclick="openModal()">+ 新增</button></div>
+        </div>
+
+        <button class="button is-small is-fullwidth mb-3 is-info is-light" style="font-size: 0.8rem; font-weight: bold;" onclick="openSettingsModal()">
+            <span class="icon"><i class="fas fa-sliders-h"></i></span><span>進階設定</span>
+        </button>
+        
+        <div class="field mb-2 px-1">
+            <div class="control has-icons-left">
+                <input class="input is-small is-rounded" type="text" id="courseSearchInput" placeholder="🔍 搜尋課程名稱或教師..." oninput="renderSidebar()">
+                <span class="icon is-small is-left"><i class="fas fa-search"></i></span>
+            </div>
+        </div>
+
+        <div class="courses-list-wrapper" id="courseList"></div>
+        <div class="mt-auto pt-2 border-t">
+            <div style="font-size: 10px; color: #888; margin-bottom: 5px;">* 點擊下方老師標籤可設定/刪除</div>
+            <div id="teacherLegend" style="display: flex; flex-wrap: wrap; gap: 3px; max-height: 60px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="top-bar level is-mobile mb-2" style="position: relative; z-index: 30;">
+            <div class="level-left">
+                <button class="button is-small is-light mobile-sidebar-toggle edit-only mr-1" style="display:none;" onclick="toggleMobileSidebar()" title="課程管理">
+                    <span class="icon"><i class="fas fa-bars"></i></span>
+                </button>
+                <h2 class="title is-6 mr-2 mb-0" style="font-size: 1rem; display: flex; align-items: center;">
+                    📅 東海電機排課模擬器 by HC
+                    <span id="currentYearLabel" class="tag is-primary is-light is-rounded ml-1"></span> 
+                    <span id="currentSemLabel" class="tag is-info is-light is-rounded ml-1" style="font-weight:normal;"></span>
+                    
+                    <div class="buttons are-small mb-0 ml-2 edit-only" style="display: inline-flex;">
+                        <button class="button is-small is-light" id="btnUndo" onclick="undo()" disabled><span class="icon"><i class="fas fa-undo"></i></span></button>
+                        <button class="button is-small is-light" id="btnRedo" onclick="redo()" disabled><span class="icon"><i class="fas fa-redo"></i></span></button>
+                    </div>
+
+                    <button class="button is-small is-dark is-outlined ml-2" id="btnDarkMode" onclick="toggleDarkMode()">
+                        <span class="icon"><i class="fas fa-moon"></i></span>
+                    </button>
+                </h2>
+                
+                <div class="control ml-2">
+                    <div class="select is-small is-rounded is-primary">
+                        <select id="teacherFilterSelect" onchange="applyTeacherFilter()"><option value="ALL">👨‍🏫 全部教師</option></select>
+                    </div>
+                </div>
+                <div id="nasSyncStatus" class="sync-status sync-waiting ml-2" style="display:none;">
+                    <span class="icon is-small mr-1"><i class="fas fa-network-wired"></i></span>
+                    <span id="nasStatusText">離線</span>
+                </div>
+            </div>
+            <div class="level-right">
+                <button class="button is-info is-small edit-only mr-1" onclick="openCrawlerModal()"><span class="icon is-small"><i class="fas fa-sync-alt"></i></span><span>更新教室</span></button>
+                <div class="buttons are-small">
+                    <button class="button is-info is-light" style="font-size: 0.75rem;" onclick="openAnalysisModal()"><span class="icon"><i class="fas fa-chart-pie"></i></span><span>統計與分析</span></button>
+                    <button id="btnClearHighlights" class="button is-danger is-light" style="display:none; font-size: 0.75rem;" onclick="clearHighlights()">❌ 清除標示</button>
+                    
+                    <button id="btnManualNas" class="button is-warning is-light" style="font-size: 0.75rem;" onclick="manualLoadFromNAS()"><span class="icon"><i class="fas fa-cloud-download-alt"></i></span><span>📥 重新載入</span></button>
+                    <button id="btnNasSync" class="button is-link is-light edit-only" style="font-size: 0.75rem;" onclick="toggleNasSync()"><span class="icon"><i class="fas fa-cloud-upload-alt"></i></span><span>NAS 同步</span></button>
+                    <button id="btnSaveNas" class="button is-success is-light edit-only" style="font-size: 0.75rem;" onclick="saveToNAS()"><span class="icon"><i class="fas fa-save"></i></span><span>儲存</span></button>
+                    
+                    <div class="dropdown is-hoverable is-right edit-only">
+                        <div class="dropdown-trigger"><button class="button is-success is-light" style="font-size: 0.75rem;">💾 匯出/匯入</button></div>
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a class="dropdown-item" onclick="exportAllData()">📦 匯出系統備份 (.json)</a>
+                                <a class="dropdown-item" onclick="exportToExcel()">📊 匯出為 Excel (.xlsx)</a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item" onclick="exportToICS()">🗓️ 匯出至日曆 (.ics)</a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item" onclick="document.getElementById('teacherTxtInput').click()">📥 匯入教師名單 (teachers.txt)</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown is-hoverable is-right">
+                        <div class="dropdown-trigger"><button class="button is-warning is-light" style="font-size: 0.75rem;">📷 下載</button></div>
+                        <div class="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a class="dropdown-item" onclick="exportImage('png')">下載 PNG (總表)</a>
+                                <a class="dropdown-item" onclick="exportImage('pdf')">下載 PDF (總表)</a>
+                                <hr class="dropdown-divider">
+                                <a class="dropdown-item" onclick="openTeacherExportModal()"><strong>下載教師個人課表 (PDF)</strong></a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button is-link is-light edit-only" style="font-size: 0.75rem;" onclick="document.getElementById('importFile').click()">📤 導入(Excel/系統檔)</button>
+                    <input type="file" id="importFile" style="display: none;" accept=".txt,.json,.xlsx,.xls,.csv" onchange="importData(this)">
+                    <input type="file" id="teacherTxtInput" style="display: none;" accept=".txt" onchange="importTeacherTxt(event)">
+                </div>
+            </div>
+        </div>
+
+        <div class="timetable-container" id="captureTarget">
+            <div class="screenshot-wrapper">
+                <div class="screenshot-header" id="screenshotHeader"></div>
+                <table class="timetable" id="mainTable">
+                    <colgroup id="tableColGroup"></colgroup>
+                    <thead id="tableHead"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="settingsModal">
+    <div class="modal-background" onclick="closeSettingsModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head py-3">
+            <p class="modal-card-title is-size-6"><span class="icon"><i class="fas fa-sliders-h"></i></span> 進階設定</p>
+            <button class="delete" onclick="closeSettingsModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <h3 class="title is-6 mb-2">📅 基礎設定</h3>
+            <div class="columns is-mobile">
+                <div class="column">
+                    <label class="label is-small">學年 (資料獨立)</label>
+                    <div class="control">
+                        <div class="select is-small is-fullwidth"><select id="yearSelect" onchange="changeYear()"></select></div>
+                    </div>
+                </div>
+                <div class="column">
+                    <label class="label is-small">當前顯示學期</label>
+                    <div class="control mt-2">
+                        <label class="radio is-small"><input type="radio" name="semView" value="1" onchange="updateSettings()"> 上學期</label>
+                        <label class="radio is-small"><input type="radio" name="semView" value="2" onchange="updateSettings()"> 下學期</label>
+                    </div>
+                </div>
+            </div>
+            <button class="button is-info is-light is-small is-fullwidth mb-3 edit-only" onclick="openCopyModal()">📥 複製他學期資料</button>
+            <hr class="my-3">
+            
+            <h3 class="title is-6 mb-2">🖥️ 顯示設定</h3>
+            <div class="field mb-2">
+                <label class="label is-small">顯示年級欄位</label>
+                <div class="control">
+                    <label class="checkbox mr-2"><input type="checkbox" id="g1" onchange="updateSettings()"> 大一</label>
+                    <label class="checkbox mr-2"><input type="checkbox" id="g2" onchange="updateSettings()"> 大二</label>
+                    <label class="checkbox mr-2"><input type="checkbox" id="g3" onchange="updateSettings()"> 大三</label>
+                    <label class="checkbox mr-2"><input type="checkbox" id="g4" onchange="updateSettings()"> 大四/碩士</label>
+                </div>
+            </div>
+            <div class="field mb-2">
+                <label class="label is-small">顯示週末排課</label>
+                <div class="control">
+                    <label class="checkbox mr-2"><input type="checkbox" id="showSat" onchange="updateSettings()"> 顯示週六</label>
+                    <label class="checkbox mr-2"><input type="checkbox" id="showSun" onchange="updateSettings()"> 顯示週日</label>
+                </div>
+            </div>
+            <hr class="my-3">
+
+            <h3 class="title is-6 mb-2">🛠️ 進階功能</h3>
+            <div class="field">
+                <label class="checkbox is-small" style="display: block; margin-bottom: 5px;">
+                    <input type="checkbox" id="settingEnableNas" onchange="updateSettings()"> 啟用 NAS 雲端同步與備份功能
+                </label>
+                <label class="checkbox is-small" style="display: block;">
+                    <input type="checkbox" id="settingSplitTeacher" onchange="updateSettings()"> 拆分課程時可指派不同授課教師
+                </label>
+            </div>
+        </section>
+        <footer class="modal-card-foot py-3" style="justify-content: flex-end;">
+            <button class="button is-primary is-small" onclick="closeSettingsModal()">完成</button>
+        </footer>
+    </div>
+</div>
+
+<div id="teacherExportContainer">
+    <div class="pdf-header">
+        <div class="pdf-header-title">東海大學電機系<span id="pdfYear">114</span>學年度第<span id="pdfSem">1</span>學期</div>
+        <div class="pdf-header-title">教師授課時間表</div>
+    </div>
+    <div class="pdf-meta">
+        <div style="margin-bottom: 5px;">單位系所: 電機工程學系</div>
+        <div>教師姓名: <span id="pdfTeacherName">苗新元</span></div>
+    </div>
+    <table class="pdf-table">
+        <thead id="pdfTableHead"></thead>
+        <tbody id="pdfTableBody"></tbody>
+    </table>
+</div>
+
+<div class="modal" id="analysisModal">
+    <div class="modal-background" onclick="closeAnalysisModal()"></div>
+    <div class="modal-card" style="width: 600px; max-width: 95vw;">
+        <header class="modal-card-head py-3" style="background-color: #f0f8ff;">
+            <p class="modal-card-title is-size-6"><span class="icon"><i class="fas fa-chart-pie"></i></span> 統計與分析</p>
+            <button class="delete" onclick="closeAnalysisModal()"></button>
+        </header>
+        <section class="modal-card-body p-0">
+            <div class="tabs is-fullwidth is-boxed mb-0">
+                <ul>
+                    <li class="is-active" data-tab="tab-stats" onclick="switchAnalysisTab(this)"><a><span class="icon"><i class="fas fa-list-ol"></i></span><span>學分節數統計</span></a></li>
+                    <li data-tab="tab-freetime" onclick="switchAnalysisTab(this)"><a><span class="icon"><i class="fas fa-search-plus"></i></span><span>尋找共同空堂</span></a></li>
+                </ul>
+            </div>
+            <div class="p-4">
+                <div id="tab-stats" class="tab-content is-active">
+                    <div id="statsContainer"></div>
+                </div>
+                <div id="tab-freetime" class="tab-content">
+                    <div class="notification is-info is-light is-small p-2 mb-3">
+                        選擇多個年級或教師，系統會為您在課表上以藍色光暈高亮出<strong>「所有人都有空」</strong>的時段。
+                    </div>
+                    <div class="field">
+                        <label class="label is-small">1. 選擇參與年級</label>
+                        <div class="control">
+                            <label class="checkbox mr-3"><input type="checkbox" class="ft-grade" value="1"> 大一</label>
+                            <label class="checkbox mr-3"><input type="checkbox" class="ft-grade" value="2"> 大二</label>
+                            <label class="checkbox mr-3"><input type="checkbox" class="ft-grade" value="3"> 大三</label>
+                            <label class="checkbox mr-3"><input type="checkbox" class="ft-grade" value="4"> 大四/碩士</label>
+                        </div>
+                    </div>
+                    <div class="field mt-3">
+                        <label class="label is-small">2. 選擇參與教師</label>
+                        <div class="control" id="ftTeacherContainer" style="max-height: 150px; overflow-y: auto; border: 1px solid #eee; padding: 5px; border-radius: 4px;">
+                        </div>
+                    </div>
+                    <div class="mt-4 has-text-centered">
+                        <button class="button is-primary is-small" onclick="findCommonFreeTime()"><span class="icon"><i class="fas fa-search"></i></span><span>開始尋找空堂</span></button>
+                        <button class="button is-light is-small ml-2" onclick="clearHighlights(); closeAnalysisModal();">取消 / 清除標示</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="modal" id="courseModal"><div class="modal-background" onclick="closeModal()"></div><div class="modal-card"><header class="modal-card-head py-3"><p class="modal-card-title is-size-6">新增課程</p><button class="delete" onclick="closeModal()"></button></header><section class="modal-card-body"><div class="field"><label class="label is-small">課程名稱</label><div class="control"><input class="input is-small" type="text" id="mName" placeholder="例如: 程式設計"></div></div><div class="field"><label class="label is-small">教師姓名</label><div class="control"><input class="input is-small" type="text" id="mTeacher" placeholder="點擊以選擇或輸入(多位教師以逗號分隔)" autocomplete="off"></div></div><div class="field"><label class="label is-small">節數</label><div class="control"><input class="input is-small" type="number" id="mCredits" value="3" min="1" max="8"></div></div><div class="field"><label class="label is-small">開課學期</label><div class="control"><label class="radio is-small"><input type="radio" name="mSem" value="1"> 上學期</label><label class="radio is-small"><input type="radio" name="mSem" value="2"> 下學期</label><label class="radio is-small"><input type="radio" name="mSem" value="3" checked> 學年課(全)</label></div></div><div class="field"><label class="label is-small">課程屬性</label><div class="control"><label class="radio is-small"><input type="radio" name="mType" value="required" onclick="toggleMIndependent(true)"> 必修</label><label class="radio is-small"><input type="radio" name="mType" value="elective" onclick="toggleMIndependent(false)"> 選修</label><label class="radio is-small"><input type="radio" name="mType" value="none" checked onclick="toggleMIndependent(false)"> 無</label></div></div><div class="field" id="mIndependentField" style="display:none;"><label class="checkbox is-small"><input type="checkbox" id="mIndependent"> 獨立必修 (不可與全校任何課程衝堂)</label></div><div class="columns is-mobile mb-0"><div class="column is-half pb-0"><div class="field"><label class="label is-small">分班 (A/B)</label><div class="control"><label class="radio is-small"><input type="radio" name="mClassFilter" value="all" checked> 不分</label><label class="radio is-small"><input type="radio" name="mClassFilter" value="A"> A班</label><label class="radio is-small"><input type="radio" name="mClassFilter" value="B"> B班</label></div></div></div><div class="column is-half pb-0"><div class="field"><label class="label is-small">學號分流</label><div class="control"><label class="radio is-small"><input type="radio" name="mIdFilter" value="all" checked> 不分</label><label class="radio is-small"><input type="radio" name="mIdFilter" value="odd"> 單號</label><label class="radio is-small"><input type="radio" name="mIdFilter" value="even"> 雙號</label></div></div></div></div><div class="field mt-3"><label class="label is-small">限制年級 (選填，顯示黃光)</label><div class="control" id="mGradeContainer"><label class="checkbox mr-2"><input type="checkbox" value="1"> 大一</label><label class="checkbox mr-2"><input type="checkbox" value="2"> 大二</label><label class="checkbox mr-2"><input type="checkbox" value="3"> 大三</label><label class="checkbox mr-2"><input type="checkbox" value="4"> 大四/碩士</label></div></div></section><footer class="modal-card-foot py-3"><button class="button is-primary is-small" onclick="addCourse()">確定新增</button><button class="button is-small" onclick="closeModal()">取消</button></footer></div></div>
+
+<div class="modal" id="editCourseModal">
+    <div class="modal-background" onclick="closeEditModal()"></div>
+    <div class="modal-card">
+        <header class="modal-card-head py-3" style="background-color: #effaf5; flex-direction: column; align-items: stretch; padding-bottom: 0 !important;">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px;">
+                <p class="modal-card-title is-size-6 mb-0">編輯課程</p>
+                <button class="delete" onclick="closeEditModal()"></button>
+            </div>
+            <div class="tabs is-centered is-boxed is-small mb-0" id="editCourseTabsContainer" style="display:none; width: 100%;">
+                <ul id="editCourseTabs" style="border-bottom-color: #dbdbdb;"></ul>
+            </div>
+        </header>
+        <section class="modal-card-body">
+            <input type="hidden" id="eId">
+            <div class="field"><label class="label is-small">課程名稱</label><div class="control"><input class="input is-small" type="text" id="eName"></div></div>
+            <div class="field"><label class="label is-small">教室代號 (例如: ST019)</label><div class="control"><input class="input is-small" type="text" id="eRoom" placeholder="若無可留空"></div></div>
+            <div class="field"><label class="label is-small">教師姓名</label><div class="control"><input class="input is-small" type="text" id="eTeacher" placeholder="點擊以選擇或輸入" autocomplete="off"></div></div>
+            <div class="field">
+                <label class="label is-small">節數</label><div class="control"><input class="input is-small" type="number" id="eCredits" min="1" max="8"></div>
+                <p class="help is-danger" id="eCreditsHelp"></p>
+            </div>
+            <div class="field"><label class="label is-small">開課學期</label><div class="control"><label class="radio is-small"><input type="radio" name="eSem" value="1"> 上學期</label><label class="radio is-small"><input type="radio" name="eSem" value="2"> 下學期</label><label class="radio is-small"><input type="radio" name="eSem" value="3"> 學年課(全)</label></div></div>
+            <div class="field"><label class="label is-small">課程屬性</label><div class="control"><label class="radio is-small"><input type="radio" name="eType" value="required" onclick="toggleEIndependent(true)"> 必修</label><label class="radio is-small"><input type="radio" name="eType" value="elective" onclick="toggleEIndependent(false)"> 選修</label><label class="radio is-small"><input type="radio" name="eType" value="none" onclick="toggleEIndependent(false)"> 無</label></div></div>
+            <div class="field" id="eIndependentField" style="display:none;"><label class="checkbox is-small"><input type="checkbox" id="eIndependent"> 獨立必修 (不可與全校任何課程衝堂)</label></div>
+            <div class="columns is-mobile mb-0"><div class="column is-half pb-0"><div class="field"><label class="label is-small">分班 (A/B)</label><div class="control"><label class="radio is-small"><input type="radio" name="eClassFilter" value="all" checked> 不分</label><label class="radio is-small"><input type="radio" name="eClassFilter" value="A"> A班</label><label class="radio is-small"><input type="radio" name="eClassFilter" value="B"> B班</label></div></div></div><div class="column is-half pb-0"><div class="field"><label class="label is-small">學號分流</label><div class="control"><label class="radio is-small"><input type="radio" name="eIdFilter" value="all" checked> 不分</label><label class="radio is-small"><input type="radio" name="eIdFilter" value="odd"> 單號</label><label class="radio is-small"><input type="radio" name="eIdFilter" value="even"> 雙號</label></div></div></div></div>
+            <div class="field mt-3"><label class="label is-small">限制年級 (選填，顯示黃光)</label><div class="control" id="eGradeContainer"><label class="checkbox mr-2"><input type="checkbox" value="1"> 大一</label><label class="checkbox mr-2"><input type="checkbox" value="2"> 大二</label><label class="checkbox mr-2"><input type="checkbox" value="3"> 大三</label><label class="checkbox mr-2"><input type="checkbox" value="4"> 大四/碩士</label></div></div>
+        </section>
+        <footer class="modal-card-foot py-3">
+            <button class="button is-info is-small" onclick="submitEdit()">💾 儲存變更</button>
+            <button class="button is-small" onclick="closeEditModal()">取消</button>
+        </footer>
+    </div>
+</div>
+
+<div class="modal" id="teacherSettingsModal"><div class="modal-background" onclick="closeTeacherSettingsModal()"></div><div class="modal-card" style="width: 700px; max-width: 95vw;"><header class="modal-card-head py-3" style="background-color: #f5f7fa;"><p class="modal-card-title is-size-6"><span class="icon"><i class="fas fa-user-cog"></i></span> 設定教師：<span id="tsName" style="font-weight:bold; color:#209cee;"></span></p><button class="delete" onclick="closeTeacherSettingsModal()"></button></header><section class="modal-card-body" style="padding: 0;"><div class="tabs is-fullwidth is-boxed mb-0"><ul><li class="is-active" data-tab="tab-color" onclick="switchTeacherTab(this)"><a>🎨 顏色與外觀</a></li><li data-tab="tab-avail" onclick="switchTeacherTab(this)"><a>✅ 可排時段(綠光)</a></li><li data-tab="tab-events" onclick="switchTeacherTab(this)"><a>📅 個人行程(僅PDF)</a></li></ul></div><div style="padding: 20px;"><div id="tab-color" class="tab-content is-active"><div class="field"><label class="label is-small">代表顏色 (背景)</label><div class="control"><input type="color" id="tsColor" style="width:100%; height:40px; cursor:pointer;"></div></div><div class="field"><label class="label is-small">文字顏色</label><div class="control"><div class="select is-fullwidth is-small"><select id="tsTextColor"><option value="black">黑色</option><option value="white">白色</option></select></div></div></div><hr><button class="button is-danger is-light is-small is-fullwidth" onclick="deleteCurrentTeacher()">🗑️ 刪除此老師 (包含所有課程)</button></div><div id="tab-avail" class="tab-content"><p class="help is-info mb-2">勾選的時段將在拖曳該老師課程時顯示綠色光暈。</p><div class="avail-table-wrapper" id="tsAvailContainer"></div></div><div id="tab-events" class="tab-content"><div class="notification is-warning is-light is-small p-2 mb-3"><small>注意：此處設定的「晤談、會議」<b>不會</b> 顯示在主排課畫面上，僅會在<b>「下載教師個人課表 (PDF)」</b>時出現。</small></div><div class="box p-2 mb-3" style="background:#effaf5;"><div class="columns is-mobile is-multiline is-variable is-1"><div class="column is-3"><label class="label is-small">類型</label><div class="select is-small is-fullwidth"><select id="newEventType" onchange="autoFillLocation()"><option value="晤談時間">晤談時間</option><option value="產學會議">產學會議</option><option value="研究生會議">研究生會議</option><option value="其他">其他</option></select></div></div><div class="column is-3"><label class="label is-small">地點</label><input class="input is-small" type="text" id="newEventLoc" value="教師辦公室"></div><div class="column is-2"><label class="label is-small">星期</label><div class="select is-small is-fullwidth"><select id="newEventDay"><option value="1">一</option><option value="2">二</option><option value="3">三</option><option value="4">四</option><option value="5">五</option><option value="6">六</option></select></div></div><div class="column is-2"><label class="label is-small">節次</label><div class="select is-small is-fullwidth"><select id="newEventPeriod"></select></div></div><div class="column is-2" style="display:flex; align-items:flex-end;"><button class="button is-primary is-small is-fullwidth" onclick="addTeacherEvent()">+ 新增</button></div></div></div><label class="label is-small">已設定行程</label><div id="tsEventList" style="max-height: 250px; overflow-y: auto;"></div></div></div></section><footer class="modal-card-foot py-3" style="justify-content: flex-end;"><button class="button is-success" onclick="saveTeacherSettings()">💾 儲存設定</button><button class="button" onclick="closeTeacherSettingsModal()">取消</button></footer></div></div>
+
+<!-- 手機版底部導覽列 -->
+<div class="mobile-bottom-nav" id="mobileBottomNav">
+    <button class="mobile-nav-item is-active" id="mobileNavTimetable" onclick="mobileNavTo('timetable')">
+        <i class="fas fa-calendar-alt"></i>
+        <span>課表</span>
+    </button>
+    <button class="mobile-nav-item edit-only" id="mobileNavCourses" onclick="mobileNavTo('courses')">
+        <i class="fas fa-book"></i>
+        <span>課程</span>
+    </button>
+    <button class="mobile-nav-item" id="mobileNavStats" onclick="mobileNavTo('stats')">
+        <i class="fas fa-chart-pie"></i>
+        <span>統計</span>
+    </button>
+    <button class="mobile-nav-item" id="mobileNavDownload" onclick="mobileNavTo('download')">
+        <i class="fas fa-download"></i>
+        <span>下載</span>
+    </button>
+    <button class="mobile-nav-item" id="mobileNavSettings" onclick="mobileNavTo('settings')">
+        <i class="fas fa-cog"></i>
+        <span>設定</span>
+    </button>
+</div>
+
+<script src="core.js"></script>
+<script src="ui.js"></script>
+<script src="io.js"></script>
+
+<input type="file" id="crawlerJsonInput" style="display: none;" accept=".json,.html,.htm,.txt" onchange="handleCrawlerJsonUpload(event)">
+<input type="file" id="excelInput" style="display: none;" accept=".xlsx, .xls, .csv" onchange="handleExcelUpload(event)">
+</body>
+</html>

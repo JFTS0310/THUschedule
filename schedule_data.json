@@ -1,0 +1,3562 @@
+{
+    "settings": {
+        "wd": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "sat": false,
+        "sun": false,
+        "currentSemester": 1,
+        "we": [
+            true,
+            true,
+            true,
+            true
+        ],
+        "enableSplitTeacherSelection": true,
+        "enableNas": true
+    },
+    "collapsedTeachers": [
+        "蔡宜芳",
+        "鄒振東",
+        "劉日新",
+        "林雅萍",
+        "蔡坤霖",
+        "許銘全",
+        "黃家逸",
+        "許嘉緯",
+        "陳俊宏",
+        "黃永發",
+        "溫志宏",
+        "校必修",
+        "梁新潁",
+        "陳昱仁",
+        "蔣惟丞",
+        "田青禾",
+        "劉志毅",
+        "鐘玉芳",
+        "黃宇中",
+        "蔡家幸",
+        "陳錡楓",
+        "苗新元",
+        "林佳威"
+    ],
+    "lastActiveYear": 115,
+    "teacherCategories_115": {
+        "分類1": [
+            "教授1",
+            "教授2"
+        ],
+        "分類2": [
+            "教授1",
+            "教授2"
+        ],
+        "分類3": [
+            "教授1",
+            "教授2"
+        ],
+        "分類4": [
+            "教授1",
+            "教授2"
+        ]
+    },
+    "teacherColors_115": [],
+    "teacherTextColors_114": {
+        "田青禾": "black",
+        "陳錡楓": "black",
+        "林雅萍": "black",
+        "蔣惟丞": "white",
+        "蔡坤霖": "black",
+        "黃宇中": "white",
+        "許銘全": "black",
+        "陳昱仁": "black",
+        "許嘉緯": "white",
+        "劉日新": "white",
+        "鄒振東": "white",
+        "鐘玉芳": "black",
+        "黃永發": "white",
+        "黃家逸": "black",
+        "蔡宜芳": "white",
+        "溫志宏": "white",
+        "苗新元": "black",
+        "許銘權": "black",
+        "陳俊宏": "white",
+        "何旻原": "white",
+        "劉志毅": "white",
+        "蔡家幸": "white",
+        "梁新潁": "white"
+    },
+    "teacherTextColors_115": [],
+    "courses_114": [
+        {
+            "id": "dept_req_5_1774574089171",
+            "name": "英文(校)",
+            "teacher": "校必修",
+            "periods": 4,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_6_1774574089171",
+            "name": "英文(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 2,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_7_1774574089171",
+            "name": "國文(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_0_1774574089171",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_1_1774574089171",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_2_1774574089171",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_3_1774574089171",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_4_1774574089171",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_8_1774574089171",
+            "name": "體育(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_9_1774574089171",
+            "name": "體育(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "teacher": "田青禾",
+            "name": "太陽能光電電池 (選) (選) [HT109]",
+            "allowedGrades": [
+                4
+            ],
+            "semester": 2,
+            "periods": 3,
+            "id": "17669681482400.4256641519111619",
+            "courseType": "elective",
+            "isIndependent": false,
+            "isSplit": false
+        },
+        {
+            "name": "半導體封裝 (選)",
+            "allowedGrades": [
+                4
+            ],
+            "semester": 1,
+            "periods": 3,
+            "isSplit": false,
+            "id": "1766973008164",
+            "teacher": "田青禾",
+            "isIndependent": false,
+            "courseType": "elective"
+        },
+        {
+            "id": "1770007278209",
+            "name": "專討(二) (選) [LAN007](1)",
+            "teacher": "田青禾",
+            "periods": 1,
+            "isSplit": true,
+            "allowedGrades": [
+                3,
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1768275044891"
+        },
+        {
+            "id": "1770007278210",
+            "name": "專討(二) (選) [LAN007](2)",
+            "teacher": "田青禾",
+            "periods": 1,
+            "isSplit": true,
+            "allowedGrades": [
+                3,
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1768275044891"
+        },
+        {
+            "semester": 1,
+            "periods": 1,
+            "id": "1766973038974",
+            "isSplit": false,
+            "name": "專題討論(一) (選)",
+            "teacher": "田青禾",
+            "courseType": "elective",
+            "allowedGrades": [
+                4
+            ],
+            "isIndependent": false
+        },
+        {
+            "isIndependent": false,
+            "courseType": "elective",
+            "id": "1766972962404",
+            "allowedGrades": [
+                3
+            ],
+            "periods": 3,
+            "name": "發光二極體原理與應用 (選)",
+            "semester": 1,
+            "teacher": "田青禾",
+            "isSplit": false
+        },
+        {
+            "isIndependent": true,
+            "periods": 1,
+            "courseType": "required",
+            "name": "電子學(Ⅰ) (1)",
+            "semester": 1,
+            "isSplit": true,
+            "teacher": "田青禾",
+            "parentId": "1766972977546",
+            "allowedGrades": [
+                2
+            ],
+            "id": "1766972979216"
+        },
+        {
+            "isSplit": true,
+            "allowedGrades": [
+                2
+            ],
+            "periods": 2,
+            "name": "電子學(Ⅰ) (2)",
+            "teacher": "田青禾",
+            "id": "1766972979217",
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 1,
+            "parentId": "1766972977546"
+        },
+        {
+            "id": "1770007054613_48680_0",
+            "name": "電子學（Ⅱ） (必) [H103](1)",
+            "periods": 2,
+            "teacher": "田青禾",
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054613_48680",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054613_48680_1",
+            "name": "電子學（Ⅱ） (必) [H104](2)",
+            "periods": 1,
+            "teacher": "田青禾",
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054613_48680",
+            "isSplit": true
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "id": "17669681482400.19072838632442368",
+            "isSplit": false,
+            "isIndependent": false,
+            "teacher": "田青禾",
+            "periods": 3,
+            "name": "電工實驗（Ⅱ） (必) [ST122]",
+            "semester": 2
+        },
+        {
+            "teacher": "田青禾",
+            "isSplit": false,
+            "id": "17669681482400.3444153806280098",
+            "courseType": "elective",
+            "semester": 2,
+            "isIndependent": false,
+            "periods": 3,
+            "allowedGrades": [
+                3
+            ],
+            "name": "積體電路佈局設計與實務 (選) [HT108]"
+        },
+        {
+            "name": "積體電路製程整合 (選) [C119]",
+            "periods": 3,
+            "teacher": "田青禾",
+            "isSplit": false,
+            "allowedGrades": [
+                3
+            ],
+            "semester": 2,
+            "id": "17669681482400.5838991391980668",
+            "isIndependent": false,
+            "courseType": "elective"
+        },
+        {
+            "semester": 2,
+            "teacher": "許銘全",
+            "isIndependent": false,
+            "allowedGrades": [
+                1
+            ],
+            "name": "工程數學（Ⅰ） (必) [HT101]",
+            "id": "17669681482400.9197871862683656",
+            "periods": 3,
+            "courseType": "required",
+            "isSplit": false
+        },
+        {
+            "teacher": "許銘全",
+            "id": "1766973084388",
+            "periods": 3,
+            "name": "工程數學(Ⅱ) (必)",
+            "isIndependent": true,
+            "isSplit": false,
+            "courseType": "required",
+            "allowedGrades": [
+                2
+            ],
+            "semester": 1
+        },
+        {
+            "teacher": "許銘全",
+            "isSplit": false,
+            "courseType": "elective",
+            "id": "17669681482400.39560414631553964",
+            "semester": 2,
+            "periods": 3,
+            "allowedGrades": [
+                2
+            ],
+            "name": "自動控制 (選) (選) [LAN111]",
+            "isIndependent": false
+        },
+        {
+            "teacher": "許銘全",
+            "id": "1766973068327",
+            "courseType": "elective",
+            "name": "系統動力學 (選)",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "isIndependent": false,
+            "periods": 3,
+            "isSplit": false
+        },
+        {
+            "id": "1770007298806",
+            "name": "專討(四) (選) [LAN007](1)",
+            "teacher": "許銘全",
+            "periods": 1,
+            "isSplit": true,
+            "allowedGrades": [
+                3,
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "17669681482400.06066876729669324"
+        },
+        {
+            "id": "1770007298807",
+            "name": "專討(四) (選) [LAN007](2)",
+            "teacher": "許銘全",
+            "periods": 1,
+            "isSplit": true,
+            "allowedGrades": [
+                3,
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "17669681482400.06066876729669324"
+        },
+        {
+            "isIndependent": false,
+            "allowedGrades": [
+                4
+            ],
+            "isSplit": false,
+            "name": "專題討論(三) (選)",
+            "periods": 1,
+            "courseType": "elective",
+            "semester": 1,
+            "id": "1766973115301",
+            "teacher": "許銘全"
+        },
+        {
+            "name": "電機機械 (選)",
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "id": "1766973096713",
+            "teacher": "許銘全",
+            "semester": 1,
+            "courseType": "elective",
+            "isIndependent": false,
+            "periods": 3
+        },
+        {
+            "id": "17669681482400.16307249827973758",
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "periods": 3,
+            "semester": 2,
+            "name": "機器人學 (選) (選) [HT109]",
+            "teacher": "許銘全"
+        },
+        {
+            "periods": 3,
+            "name": "智慧型機器人系統 (選)",
+            "teacher": "陳昱仁",
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "elective",
+            "id": "1766972927271"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "semester": 1,
+            "periods": 3,
+            "isIndependent": false,
+            "teacher": "陳昱仁",
+            "courseType": "elective",
+            "isSplit": false,
+            "id": "1766972916605",
+            "name": "智慧電子應用設計實驗 (選)"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "semester": 1,
+            "periods": 3,
+            "id": "1766972880657",
+            "teacher": "陳昱仁",
+            "courseType": "required",
+            "name": "電工實驗(Ⅰ)A (必)",
+            "isIndependent": false,
+            "isSplit": false
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "teacher": "陳昱仁",
+            "semester": 2,
+            "isSplit": false,
+            "periods": 3,
+            "id": "17669681482400.6381487275453395",
+            "name": "電工實驗（Ⅱ） (必) [ST122]",
+            "isIndependent": false
+        },
+        {
+            "semester": 2,
+            "periods": 3,
+            "isSplit": false,
+            "id": "17669681482400.5269612129850628",
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "elective",
+            "name": "網路數據應用實驗 (選) [HT108]",
+            "isIndependent": false,
+            "teacher": "陳昱仁"
+        },
+        {
+            "isIndependent": true,
+            "courseType": "required",
+            "isSplit": true,
+            "name": "線性代數 (1)",
+            "teacher": "陳昱仁",
+            "id": "1766972897667",
+            "parentId": "1766972896577",
+            "periods": 1,
+            "allowedGrades": [
+                1
+            ],
+            "semester": 1
+        },
+        {
+            "courseType": "required",
+            "teacher": "陳昱仁",
+            "id": "1766972897668",
+            "name": "線性代數 (2)",
+            "periods": 2,
+            "semester": 1,
+            "allowedGrades": [
+                1
+            ],
+            "isIndependent": true,
+            "isSplit": true,
+            "parentId": "1766972896577"
+        },
+        {
+            "id": "17669681482400.26132063910815706",
+            "courseType": "elective",
+            "allowedGrades": [
+                3
+            ],
+            "isIndependent": false,
+            "periods": 3,
+            "semester": 2,
+            "name": "機器學習 (選) [HT109]",
+            "isSplit": false,
+            "teacher": "陳昱仁"
+        },
+        {
+            "isIndependent": false,
+            "teacher": "陳昱仁",
+            "id": "17669681482400.1640974199420746",
+            "allowedGrades": [
+                2
+            ],
+            "isSplit": false,
+            "periods": 3,
+            "courseType": "elective",
+            "semester": 2,
+            "name": "Python程式設計 (選) [ST020]"
+        },
+        {
+            "periods": 3,
+            "isIndependent": true,
+            "semester": 1,
+            "isSplit": false,
+            "name": "科技英文 (必)",
+            "teacher": "鐘玉芳",
+            "courseType": "required",
+            "id": "1766971378465",
+            "allowedGrades": [
+                4
+            ]
+        },
+        {
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "name": "程式設計A (1)",
+            "periods": 1,
+            "id": "1766971354854",
+            "teacher": "鐘玉芳",
+            "parentId": "1766971350629",
+            "isIndependent": false,
+            "semester": 1,
+            "isSplit": true
+        },
+        {
+            "periods": 2,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "name": "程式設計A (2)",
+            "parentId": "1766971350629",
+            "isSplit": true,
+            "id": "1766971354855",
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "required"
+        },
+        {
+            "isSplit": true,
+            "courseType": "required",
+            "isIndependent": false,
+            "id": "1766971336775",
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "name": "程式設計B (1)",
+            "semester": 1,
+            "parentId": "1766971335668",
+            "periods": 1
+        },
+        {
+            "id": "1766971336776",
+            "name": "程式設計B (2)",
+            "teacher": "鐘玉芳",
+            "isIndependent": false,
+            "courseType": "required",
+            "allowedGrades": [
+                1
+            ],
+            "periods": 2,
+            "parentId": "1766971335668",
+            "semester": 1,
+            "isSplit": true
+        },
+        {
+            "id": "1770007054446_61829_0",
+            "name": "程式語言 (必)(1)",
+            "periods": 3,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054446_61829",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054486_69503_0",
+            "name": "程式語言 (必)(1)",
+            "periods": 2,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054486_69503",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054446_61829_1",
+            "name": "程式語言 [ST021] (必)(2)",
+            "periods": 1,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054446_61829",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054486_69503_1",
+            "name": "程式語言 [ST021] (必)(2)",
+            "periods": 2,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054486_69503",
+            "isSplit": true
+        },
+        {
+            "name": "天線理論 (選) [HT108]",
+            "allowedGrades": [
+                4
+            ],
+            "periods": 3,
+            "semester": 2,
+            "courseType": "elective",
+            "id": "17669681482400.6327013824310082",
+            "isSplit": false,
+            "teacher": "陳錡楓",
+            "isIndependent": false
+        },
+        {
+            "courseType": "elective",
+            "allowedGrades": [
+                4
+            ],
+            "isIndependent": false,
+            "id": "1766972807070",
+            "teacher": "陳錡楓",
+            "periods": 3,
+            "isSplit": false,
+            "name": "毫米波電路設計與模擬 (選)",
+            "semester": 1
+        },
+        {
+            "semester": 1,
+            "courseType": "elective",
+            "isIndependent": false,
+            "id": "1766972795833",
+            "isSplit": false,
+            "name": "微波工程 (選)",
+            "teacher": "陳錡楓",
+            "periods": 3,
+            "allowedGrades": [
+                4
+            ]
+        },
+        {
+            "id": "1770007054689_42016_1",
+            "name": "電磁學（Ⅰ） (必) [H103](2)",
+            "periods": 1,
+            "teacher": "陳錡楓",
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 2,
+            "parentId": "1770007054689_42016",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054689_42016_0",
+            "name": "電磁學（Ⅰ） (必) [H204](1)",
+            "periods": 2,
+            "teacher": "陳錡楓",
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 2,
+            "parentId": "1770007054689_42016",
+            "isSplit": true
+        },
+        {
+            "id": "1766972823958",
+            "semester": 1,
+            "courseType": "required",
+            "allowedGrades": [
+                3
+            ],
+            "periods": 1,
+            "name": "電磁學(Ⅱ) (1)",
+            "parentId": "1766972822985",
+            "isIndependent": true,
+            "isSplit": true,
+            "teacher": "陳錡楓"
+        },
+        {
+            "allowedGrades": [
+                3
+            ],
+            "teacher": "陳錡楓",
+            "parentId": "1766972822985",
+            "courseType": "required",
+            "isIndependent": true,
+            "periods": 2,
+            "isSplit": true,
+            "semester": 1,
+            "name": "電磁學(Ⅱ) (2)",
+            "id": "1766972823959"
+        },
+        {
+            "id": "17669681482400.39755785659675624",
+            "semester": 2,
+            "teacher": "蔡坤霖",
+            "isIndependent": false,
+            "courseType": "elective",
+            "name": "智慧聯網技術人才培育議題   (選) (選) [ST021]",
+            "isSplit": false,
+            "allowedGrades": [],
+            "periods": 1
+        },
+        {
+            "id": "1770007054581_92730_1",
+            "name": "數位系統雛型設計 [H207] (選)(2)",
+            "periods": 1,
+            "teacher": "蔡坤霖",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054581_92730",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054581_92730_0",
+            "name": "數位系統雛型設計 [LAN111] (選)(1)",
+            "periods": 2,
+            "teacher": "蔡坤霖",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2,
+            "parentId": "1770007054581_92730",
+            "isSplit": true
+        },
+        {
+            "periods": 1,
+            "teacher": "蔡坤霖",
+            "id": "1766971997056",
+            "isSplit": true,
+            "name": "邏輯設計 (1)",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "parentId": "1766971995791",
+            "semester": 1
+        },
+        {
+            "isSplit": true,
+            "id": "1766971997057",
+            "isIndependent": true,
+            "courseType": "required",
+            "allowedGrades": [
+                1
+            ],
+            "name": "邏輯設計 (2)",
+            "teacher": "蔡坤霖",
+            "parentId": "1766971995791",
+            "semester": 1,
+            "periods": 2
+        },
+        {
+            "semester": 1,
+            "teacher": "蔡坤霖",
+            "periods": 3,
+            "courseType": "required",
+            "isSplit": false,
+            "id": "1766971965147",
+            "allowedGrades": [
+                1
+            ],
+            "name": "邏輯設計實驗A  (必)",
+            "isIndependent": false
+        },
+        {
+            "semester": 1,
+            "id": "1766971981494",
+            "allowedGrades": [
+                1
+            ],
+            "periods": 3,
+            "name": "邏輯設計實驗B (必)",
+            "courseType": "required",
+            "isIndependent": false,
+            "teacher": "蔡坤霖",
+            "isSplit": false
+        },
+        {
+            "isIndependent": false,
+            "id": "1766971261790",
+            "name": "智慧物聯網軟硬體整合實作 (選)",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "periods": 3,
+            "courseType": "elective",
+            "teacher": "苗新元",
+            "isSplit": false
+        },
+        {
+            "periods": 3,
+            "allowedGrades": [
+                2
+            ],
+            "isIndependent": false,
+            "courseType": "elective",
+            "isSplit": false,
+            "teacher": "苗新元",
+            "name": "感測器原理之視覺感測粒子控制 (選)",
+            "semester": 1,
+            "id": "1766971296464"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "isSplit": false,
+            "courseType": "elective",
+            "semester": 1,
+            "teacher": "苗新元",
+            "periods": 3,
+            "name": "電子電路軟體實習 (選)",
+            "id": "1766971280320",
+            "isIndependent": false
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "isIndependent": true,
+            "semester": 1,
+            "periods": 3,
+            "isSplit": false,
+            "teacher": "苗新元",
+            "courseType": "required",
+            "name": "電路學(Ⅰ) (必)",
+            "id": "1766971247855"
+        },
+        {
+            "semester": 2,
+            "allowedGrades": [
+                2
+            ],
+            "periods": 3,
+            "teacher": "苗新元",
+            "name": "電路學（Ⅱ） (必) [H204]",
+            "isSplit": false,
+            "isIndependent": true,
+            "courseType": "required",
+            "id": "17669681482400.2266848628670879"
+        },
+        {
+            "isSplit": false,
+            "courseType": "elective",
+            "teacher": "苗新元",
+            "name": "電路學實驗與設計原理(II)  (選) [ST021]",
+            "allowedGrades": [
+                2
+            ],
+            "periods": 3,
+            "semester": 2,
+            "isIndependent": false,
+            "id": "17669681482400.5717568539775281"
+        },
+        {
+            "periods": 3,
+            "isIndependent": false,
+            "name": "半導體元件物理 (選)",
+            "allowedGrades": [
+                3
+            ],
+            "id": "1766972043222",
+            "courseType": "elective",
+            "isSplit": false,
+            "teacher": "劉日新",
+            "semester": 1
+        },
+        {
+            "allowedGrades": [
+                3
+            ],
+            "id": "1766972023347",
+            "courseType": "elective",
+            "name": "半導體材料與元件實驗 (選)",
+            "teacher": "劉日新",
+            "isIndependent": false,
+            "periods": 3,
+            "semester": 1,
+            "isSplit": false
+        },
+        {
+            "isIndependent": false,
+            "teacher": "劉日新",
+            "isSplit": false,
+            "courseType": "elective",
+            "id": "17669681482400.3371045580616051",
+            "allowedGrades": [
+                3
+            ],
+            "name": "積體電路設計分析與實務 (選) [HT108]",
+            "periods": 3,
+            "semester": 2
+        },
+        {
+            "teacher": "劉日新",
+            "id": "17669681482400.06813428801898491",
+            "periods": 3,
+            "allowedGrades": [
+                3
+            ],
+            "semester": 2,
+            "name": "積體電路製程整合實驗 (選) [HT108]",
+            "isIndependent": false,
+            "isSplit": false,
+            "courseType": "elective"
+        },
+        {
+            "name": "工程數學（Ⅰ） (必) [HT101]",
+            "allowedGrades": [
+                1
+            ],
+            "teacher": "梁新潁",
+            "isSplit": false,
+            "semester": 2,
+            "id": "17669681482400.7497183979272726",
+            "courseType": "required",
+            "isIndependent": false,
+            "periods": 3
+        },
+        {
+            "teacher": "梁新潁",
+            "semester": 2,
+            "id": "17669681482400.4032978605681832",
+            "allowedGrades": [
+                2
+            ],
+            "name": "訊號與系統 (必) [H103]",
+            "periods": 3,
+            "isSplit": false,
+            "courseType": "required",
+            "isIndependent": true
+        },
+        {
+            "periods": 3,
+            "allowedGrades": [
+                4
+            ],
+            "teacher": "梁新潁",
+            "courseType": "elective",
+            "semester": 2,
+            "name": "編碼與偵測技術 (選) [LAN013]",
+            "id": "17669681482400.1486890310245269",
+            "isSplit": false,
+            "isIndependent": false
+        },
+        {
+            "id": "17669681482400.700763499703307",
+            "courseType": "elective",
+            "teacher": "劉志毅",
+            "periods": 3,
+            "semester": 2,
+            "name": "半導體元件分析技術 (選) [LAN013]",
+            "isIndependent": false,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ]
+        },
+        {
+            "semester": 2,
+            "courseType": "elective",
+            "allowedGrades": [
+                3
+            ],
+            "teacher": "劉志毅",
+            "periods": 3,
+            "id": "17669681482400.7373189113608661",
+            "isIndependent": false,
+            "name": "半導體材料光譜量測技術 (選) [AG122]",
+            "isSplit": false
+        },
+        {
+            "periods": 3,
+            "isIndependent": false,
+            "isSplit": false,
+            "teacher": "劉志毅",
+            "courseType": "elective",
+            "name": "光電感測技術與應用 (選) [C221]",
+            "id": "17669681482400.9709955412963336",
+            "semester": 2,
+            "allowedGrades": [
+                3
+            ]
+        },
+        {
+            "id": "1770007054518_74465_0",
+            "name": "微積分甲〈二〉 [SS102] (必)(1)",
+            "periods": 2,
+            "teacher": "林雅萍",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 3,
+            "parentId": "1770007054518_74465",
+            "isSplit": true
+        },
+        {
+            "id": "1770007054518_74465_1",
+            "name": "微積分甲〈二〉 [SS108] (必)(2)",
+            "periods": 2,
+            "teacher": "林雅萍",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 3,
+            "parentId": "1770007054518_74465",
+            "isSplit": true
+        },
+        {
+            "name": "生醫工程導論 (選) [C202]",
+            "periods": 3,
+            "id": "17669681482400.5478040694161868",
+            "isIndependent": false,
+            "courseType": "elective",
+            "isSplit": false,
+            "teacher": "陳俊宏",
+            "allowedGrades": [
+                2
+            ],
+            "semester": 2
+        },
+        {
+            "name": "生醫晶片實務應用 (選)",
+            "teacher": "陳俊宏",
+            "periods": 3,
+            "semester": 1,
+            "isSplit": false,
+            "id": "1766973391779",
+            "isIndependent": false,
+            "courseType": "elective",
+            "allowedGrades": []
+        },
+        {
+            "id": "1766973479851",
+            "name": "通訊原理   (選)",
+            "periods": 3,
+            "isSplit": false,
+            "semester": 1,
+            "courseType": "elective",
+            "teacher": "黃永發",
+            "allowedGrades": [],
+            "isIndependent": false
+        },
+        {
+            "semester": 2,
+            "allowedGrades": [
+                3
+            ],
+            "id": "17669681482400.834256081105221",
+            "isIndependent": false,
+            "isSplit": false,
+            "teacher": "黃永發",
+            "name": "數位訊號處理導論 (選) [HT101]",
+            "courseType": "elective",
+            "periods": 3
+        },
+        {
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "periods": 3,
+            "name": "計算機組織 (選) [HT108]",
+            "isSplit": false,
+            "semester": 2,
+            "id": "17669681482400.9213362136651995",
+            "teacher": "黃宇中"
+        },
+        {
+            "name": "超大型積體電路設計導論 (選)",
+            "isIndependent": false,
+            "teacher": "黃宇中",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "periods": 3,
+            "id": "1766973310759",
+            "courseType": "elective"
+        },
+        {
+            "courseType": "required",
+            "parentId": "1766973145035",
+            "teacher": "黃家逸",
+            "allowedGrades": [
+                1
+            ],
+            "isSplit": true,
+            "periods": 1,
+            "isIndependent": true,
+            "semester": 1,
+            "name": "普通物理 (1)",
+            "id": "1766973151147"
+        },
+        {
+            "name": "普通物理 (2)",
+            "isSplit": true,
+            "parentId": "1766973145035",
+            "isIndependent": true,
+            "semester": 1,
+            "courseType": "required",
+            "teacher": "黃家逸",
+            "id": "1766973151148",
+            "periods": 2,
+            "allowedGrades": [
+                1
+            ]
+        },
+        {
+            "allowedGrades": [
+                4
+            ],
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "elective",
+            "periods": 3,
+            "id": "1766973553341",
+            "isSplit": false,
+            "name": "行動通訊技術與應用 (選)",
+            "teacher": "溫志宏"
+        },
+        {
+            "id": "1768037455857",
+            "name": "數位通信技術與應用   (選) [HT221]",
+            "teacher": "溫志宏",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 2
+        },
+        {
+            "id": "17669681482400.35509896009415376",
+            "periods": 2,
+            "isIndependent": false,
+            "teacher": "蔡家幸",
+            "name": "多元職涯探索與人生設計 (選) [C101]",
+            "semester": 2,
+            "courseType": "elective",
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ]
+        },
+        {
+            "name": "AI技術 x SEL素養的競爭力養成AI技術 (選)",
+            "courseType": "elective",
+            "teacher": "蔡家幸",
+            "isSplit": false,
+            "isIndependent": false,
+            "periods": 2,
+            "semester": 1,
+            "id": "1766973340741",
+            "allowedGrades": [
+                2
+            ]
+        },
+        {
+            "teacher": "蔣惟丞",
+            "isSplit": false,
+            "semester": 2,
+            "name": "演算法 (選) [HT101]",
+            "allowedGrades": [
+                3
+            ],
+            "periods": 3,
+            "courseType": "elective",
+            "id": "17669681482400.6237361928016808",
+            "isIndependent": false
+        },
+        {
+            "isIndependent": false,
+            "teacher": "蔣惟丞",
+            "semester": 1,
+            "id": "1766973288249",
+            "courseType": "elective",
+            "periods": 3,
+            "allowedGrades": [
+                3
+            ],
+            "name": "機率與統計 (選)",
+            "isSplit": false
+        },
+        {
+            "isIndependent": false,
+            "semester": 1,
+            "name": "資料結構 (選)",
+            "teacher": "何旻原",
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "elective",
+            "periods": 3,
+            "id": "1766973366600"
+        },
+        {
+            "allowedGrades": [
+                4
+            ],
+            "teacher": "許嘉緯",
+            "name": "半導體光電元件 (選)",
+            "periods": 3,
+            "semester": 1,
+            "isIndependent": false,
+            "courseType": "elective",
+            "isSplit": false,
+            "id": "1766973408190"
+        },
+        {
+            "isIndependent": false,
+            "periods": 3,
+            "isSplit": false,
+            "id": "1766978422853",
+            "name": "功率半導體元件 (選) [HT109]",
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "elective",
+            "teacher": "鄒振東",
+            "semester": 2
+        },
+        {
+            "isIndependent": false,
+            "name": "射頻電路實驗 (選) [HT108]",
+            "id": "17669681482400.6874925247430597",
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "elective",
+            "isSplit": false,
+            "periods": 3,
+            "teacher": "蔡宜芳",
+            "semester": 2
+        }
+    ],
+    "teacherEvents_global": {
+        "江岱倫": [],
+        "林佳威": [],
+        "王慶萍": [],
+        "林宗欣": []
+    },
+    "teacherColors_114": {
+        "許銘全": "#11c8cc",
+        "陳昱仁": "#ffff00",
+        "蔡坤霖": "#ffc000",
+        "黃宇中": "#ff0000",
+        "劉日新": "#c65911",
+        "陳俊宏": "#ff0000",
+        "溫志宏": "#ff0000",
+        "許銘權": "#11c8cc",
+        "蔡家幸": "#ff0000",
+        "苗新元": "#f8cbad",
+        "鐘玉芳": "#d5a6bd",
+        "林雅萍": "#ffffff",
+        "劉志毅": "#274e13",
+        "黃家逸": "#ffffff",
+        "田青禾": "#b6d7a8",
+        "蔡宜芳": "#ff0000",
+        "何旻原": "#ff0000",
+        "鄒振東": "#ff0000",
+        "梁新潁": "#741b47",
+        "蔣惟丞": "#ff0000",
+        "黃永發": "#ff0000",
+        "陳錡楓": "#bfbfbf",
+        "許嘉緯": "#ff0000"
+    },
+    "teacherColors_global": {
+        "許銘全": "#11c8cc",
+        "陳昱仁": "#ffff00",
+        "蔡坤霖": "#ffc000",
+        "黃宇中": "#ff0000",
+        "劉日新": "#c65911",
+        "陳俊宏": "#ff0000",
+        "溫志宏": "#ff0000",
+        "蔡家幸": "#ff0000",
+        "苗新元": "#f8cbad",
+        "鐘玉芳": "#d5a6bd",
+        "林雅萍": "#ffffff",
+        "劉志毅": "#274e13",
+        "黃家逸": "#ffffff",
+        "田青禾": "#b6d7a8",
+        "蔡宜芳": "#ff0000",
+        "鄒振東": "#ff0000",
+        "梁新潁": "#741b47",
+        "蔣惟丞": "#ff0000",
+        "黃永發": "#ff0000",
+        "陳錡楓": "#bfbfbf",
+        "許嘉緯": "#ff0000",
+        "校必修": "#FFB3D9",
+        "何旻原": "#ff0000",
+        "江岱倫": "#205d7e",
+        "林佳威": "#f6fef6",
+        "許銘權": "#11c8cc",
+        "王慶萍": "#8e56d2",
+        "林宗欣": "#ffffff"
+    },
+    "teacherTextColors_global": {
+        "田青禾": "black",
+        "陳錡楓": "black",
+        "林雅萍": "black",
+        "蔣惟丞": "white",
+        "蔡坤霖": "black",
+        "黃宇中": "white",
+        "許銘全": "black",
+        "陳昱仁": "black",
+        "許嘉緯": "white",
+        "劉日新": "white",
+        "鄒振東": "white",
+        "鐘玉芳": "black",
+        "黃永發": "white",
+        "黃家逸": "black",
+        "蔡宜芳": "white",
+        "溫志宏": "white",
+        "苗新元": "black",
+        "陳俊宏": "white",
+        "劉志毅": "white",
+        "蔡家幸": "white",
+        "梁新潁": "white",
+        "何旻原": "white",
+        "江岱倫": "black",
+        "林佳威": "black",
+        "許銘權": "black",
+        "王慶萍": "black",
+        "林宗欣": "black"
+    },
+    "teacherEvents_114": [],
+    "schedule_115": {
+        "2-1-2": [
+            "17744086316900.2629436626244813"
+        ],
+        "2-1-3": [
+            "17744086316900.14437072870515233"
+        ],
+        "2-1-4": [
+            "17744086316900.14437072870515233"
+        ],
+        "5-1-2": [
+            "17743977980790.22188117362178283"
+        ],
+        "5-1-3": [
+            "17744086316900.06364822236417855"
+        ],
+        "5-1-4": [
+            "17744086316900.06364822236417855"
+        ],
+        "4-1-1": [
+            "17743977980790.814250798469136"
+        ],
+        "4-1-2": [
+            "17743977980790.814250798469136"
+        ],
+        "5-3-2": [
+            "17744086316900.9590212469987754",
+            "17743977980790.025083683354915287"
+        ],
+        "5-3-3": [
+            "17744086316900.9590212469987754",
+            "17743977980790.025083683354915287"
+        ],
+        "5-3-4": [
+            "17744086316900.9590212469987754",
+            "17743977980790.025083683354915287"
+        ],
+        "5-4-3": [
+            "17744086316900.6456593676092718",
+            "17744086316900.9746633957890649"
+        ],
+        "5-4-4": [
+            "17744086316900.6456593676092718",
+            "17744086316900.9746633957890649"
+        ],
+        "5-4-N": [
+            "17744086316900.6456593676092718"
+        ],
+        "4-4-6": [
+            "17743977980790.21534289185146105",
+            "17744086316900.575122520640221"
+        ],
+        "4-4-7": [
+            "17743977980790.21534289185146105",
+            "17744086316900.575122520640221"
+        ],
+        "4-4-2": [
+            "17743977980790.28263415503364153"
+        ],
+        "4-4-3": [
+            "17743977980790.28263415503364153"
+        ],
+        "4-4-4": [
+            "17743977980790.28263415503364153"
+        ],
+        "1-1-5": [
+            "dept_req_0_1774574100358"
+        ],
+        "2-1-5": [
+            "dept_req_1_1774574100358"
+        ],
+        "3-1-5": [
+            "dept_req_2_1774574100358"
+        ],
+        "4-1-5": [
+            "dept_req_3_1774574100358"
+        ],
+        "5-1-5": [
+            "dept_req_4_1774574100358"
+        ],
+        "5-2-1": [
+            "dept_req_6_1774574100358"
+        ],
+        "5-2-2": [
+            "dept_req_6_1774574100358"
+        ],
+        "5-1-8": [
+            "dept_req_7_1774574100358"
+        ],
+        "5-1-9": [
+            "dept_req_7_1774574100358"
+        ],
+        "3-1-1": [
+            "dept_req_8_1774574100358"
+        ],
+        "3-1-2": [
+            "dept_req_8_1774574100358"
+        ],
+        "4-2-5": [
+            "dept_req_9_1774574100358"
+        ],
+        "4-2-6": [
+            "dept_req_9_1774574100358"
+        ],
+        "5-1-6": [
+            "17743977980790.3407675415052547"
+        ],
+        "5-1-7": [
+            "17743977980790.3407675415052547"
+        ],
+        "1-2-2": [
+            "1774410729253"
+        ],
+        "1-2-3": [
+            "1774410729253"
+        ],
+        "1-2-4": [
+            "1774410729253"
+        ],
+        "1-1-3": [
+            "1775780204075"
+        ],
+        "1-1-4": [
+            "1775780204075"
+        ],
+        "3-1-3": [
+            "1775780204076"
+        ],
+        "3-1-4": [
+            "1775780204076"
+        ],
+        "4-1-7": [
+            "17744086316900.9617555714519748"
+        ],
+        "4-1-8": [
+            "17744086316900.9617555714519748"
+        ],
+        "4-1-9": [
+            "17744086316900.9617555714519748"
+        ],
+        "2-4-2": [
+            "17743977980790.8399538749681092"
+        ],
+        "2-4-3": [
+            "17743977980790.8399538749681092"
+        ],
+        "2-4-4": [
+            "17743977980790.8399538749681092"
+        ],
+        "3-4-2": [
+            "1776218115631"
+        ],
+        "3-4-3": [
+            "1776218115631"
+        ],
+        "3-4-4": [
+            "1776218115631"
+        ],
+        "4-2-7": [
+            "17744086316900.7526947103119886"
+        ],
+        "4-2-8": [
+            "17744086316900.7526947103119886"
+        ],
+        "1-3-2": [
+            "17743977980790.014717438650693082"
+        ],
+        "1-3-3": [
+            "17743977980790.014717438650693082"
+        ],
+        "1-3-4": [
+            "17743977980790.014717438650693082"
+        ],
+        "2-2-2": [
+            "17743977980790.7263047160922171",
+            "17743977980790.36013883274579817"
+        ],
+        "2-2-3": [
+            "17743977980790.7263047160922171",
+            "17743977980790.36013883274579817"
+        ],
+        "2-2-4": [
+            "17743977980790.7263047160922171",
+            "17743977980790.36013883274579817"
+        ],
+        "5-4-2": [
+            "17744086316900.9746633957890649"
+        ],
+        "3-3-2": [
+            "17743977980790.03833658322996514",
+            "17743977980790.7307939112718401"
+        ],
+        "3-3-3": [
+            "17743977980790.03833658322996514",
+            "17743977980790.7307939112718401"
+        ],
+        "3-3-4": [
+            "17743977980790.03833658322996514",
+            "17743977980790.7307939112718401"
+        ],
+        "4-3-5": [
+            "17743977980790.40289288013268254"
+        ],
+        "4-3-6": [
+            "17743977980790.40289288013268254"
+        ],
+        "4-3-7": [
+            "17743977980790.40289288013268254"
+        ],
+        "4-1-3": [
+            "17743977980790.6817998856640872"
+        ],
+        "4-1-4": [
+            "17743977980790.6817998856640872"
+        ],
+        "4-1-6": [
+            "17743977980790.715079208078151"
+        ],
+        "1-1-7": [
+            "17744086316900.32912925926998526"
+        ],
+        "1-1-8": [
+            "17744086316900.32912925926998526"
+        ],
+        "4-3-8": [
+            "17743977980790.8269449057961358"
+        ],
+        "4-3-9": [
+            "17743977980790.8269449057961358"
+        ],
+        "4-3-2": [
+            "17744086316900.17895514260777468"
+        ],
+        "4-3-3": [
+            "17744086316900.17895514260777468"
+        ],
+        "4-3-4": [
+            "17744086316900.17895514260777468"
+        ],
+        "2-1-6": [
+            "17743977980790.8214440600735784"
+        ],
+        "2-1-7": [
+            "17743977980790.8214440600735784"
+        ],
+        "2-1-8": [
+            "17743977980790.8214440600735784"
+        ],
+        "5-2-3": [
+            "17743977980790.9495289293978411"
+        ],
+        "5-3-5": [
+            "17743977980790.27838187769040923"
+        ],
+        "1-4-2": [
+            "17743977980790.5390300010207127"
+        ],
+        "1-4-3": [
+            "17743977980790.5390300010207127"
+        ],
+        "1-4-4": [
+            "17743977980790.5390300010207127"
+        ],
+        "1-4-6": [
+            "1777963884885"
+        ],
+        "1-4-7": [
+            "1777963884885"
+        ],
+        "1-4-8": [
+            "1777963884885"
+        ],
+        "2-4-6": [
+            "1776239908498"
+        ],
+        "2-4-7": [
+            "1776239908498"
+        ],
+        "2-4-8": [
+            "1776239908498"
+        ],
+        "1-3-5": [
+            "1776048290270"
+        ],
+        "1-3-6": [
+            "1776048290270"
+        ],
+        "1-3-7": [
+            "1776048290270"
+        ],
+        "3-4-6": [
+            "1774484198233"
+        ],
+        "3-4-7": [
+            "1774484198233"
+        ],
+        "3-4-8": [
+            "1774484198233"
+        ],
+        "1-2-6": [
+            "1774410692538"
+        ],
+        "1-2-7": [
+            "1774410692538"
+        ],
+        "1-2-8": [
+            "1774410692538"
+        ],
+        "3-1-6": [
+            "17743977980790.5123839194850063"
+        ],
+        "3-1-7": [
+            "17743977980790.5123839194850063"
+        ],
+        "3-1-8": [
+            "17743977980790.5123839194850063"
+        ],
+        "3-3-6": [
+            "1776047215692"
+        ],
+        "3-3-7": [
+            "1776047215692"
+        ],
+        "3-3-8": [
+            "1776047215692"
+        ],
+        "3-2-2": [
+            "17743977980790.3166833777710244"
+        ],
+        "3-2-3": [
+            "17743977980790.3166833777710244"
+        ],
+        "3-2-4": [
+            "17743977980790.3166833777710244"
+        ],
+        "1-1-2": [
+            "17743977980790.3988015796615264"
+        ],
+        "4-2-2": [
+            "1774410262916",
+            "17743977980790.6306713719474345"
+        ],
+        "4-2-3": [
+            "1774410262916",
+            "17743977980790.6306713719474345"
+        ],
+        "4-2-4": [
+            "1774410262916",
+            "17743977980790.6306713719474345"
+        ],
+        "2-3-2": [
+            "1777963942150"
+        ],
+        "2-3-3": [
+            "1777963942150"
+        ],
+        "2-3-4": [
+            "1777963942150"
+        ],
+        "3-2-7": [
+            "17743977980790.5823144256033124",
+            "1777963926991"
+        ],
+        "3-2-8": [
+            "17743977980790.5823144256033124",
+            "1777963926991"
+        ],
+        "3-2-9": [
+            "17743977980790.5823144256033124"
+        ],
+        "3-2-6": [
+            "1777963926991"
+        ],
+        "2-2-6": [
+            "17743977980790.4990630663186927"
+        ],
+        "2-2-7": [
+            "17743977980790.4990630663186927"
+        ],
+        "2-3-6": [
+            "17743977980790.41149131333014066"
+        ],
+        "2-3-7": [
+            "17743977980790.41149131333014066"
+        ],
+        "2-3-8": [
+            "17743977980790.41149131333014066"
+        ],
+        "1-2-1": [
+            "1778724009800"
+        ]
+    },
+    "teacherAvailability_global": {
+        "陳錡楓": [
+            "1-2",
+            "2-2",
+            "3-2",
+            "4-2",
+            "5-2",
+            "1-3",
+            "2-3",
+            "3-3",
+            "4-3",
+            "5-3",
+            "1-4",
+            "2-4",
+            "3-4",
+            "4-4",
+            "5-4",
+            "2-5",
+            "3-5",
+            "5-5",
+            "2-6",
+            "3-6",
+            "5-6",
+            "2-7",
+            "3-7",
+            "5-7"
+        ],
+        "黃家逸": [],
+        "鄒振東": [],
+        "林雅萍": [],
+        "許嘉緯": [],
+        "何旻原": [],
+        "江岱倫": [],
+        "林佳威": [],
+        "王慶萍": [],
+        "林宗欣": []
+    },
+    "schedule_114": {
+        "5-1-4": [
+            "1766971336776",
+            "1770007054486_69503_1"
+        ],
+        "2-4-8": [
+            "1766973008164",
+            "17669681482400.700763499703307"
+        ],
+        "3-1-7": [
+            "1766971965147"
+        ],
+        "1-2-2": [
+            "1766971247855",
+            "17669681482400.2266848628670879"
+        ],
+        "2-2-2": [
+            "1766973084388",
+            "17669681482400.4032978605681832"
+        ],
+        "4-2-3": [
+            "1766973366600",
+            "1766973391779",
+            "17669681482400.39560414631553964",
+            "17669681482400.5478040694161868"
+        ],
+        "5-3-7": [
+            "1766972823959",
+            "17669681482400.06813428801898491"
+        ],
+        "3-4-8": [
+            "1766972807070",
+            "17669681482400.1486890310245269"
+        ],
+        "3-2-4": [
+            "1766972880657",
+            "17669681482400.6381487275453395"
+        ],
+        "5-1-7": [
+            "1766971997057",
+            "1770007054581_92730_0"
+        ],
+        "4-2-9": [
+            "1766972916605",
+            "17669681482400.5269612129850628"
+        ],
+        "4-3-7": [
+            "1766972043222",
+            "1770007298806"
+        ],
+        "3-4-2": [
+            "1766971378465"
+        ],
+        "2-3-2": [
+            "1766972962404",
+            "1766973288249",
+            "17669681482400.6237361928016808",
+            "17669681482400.3444153806280098"
+        ],
+        "1-2-5": [
+            "17669681482400.5717568539775281"
+        ],
+        "5-3-3": [
+            "1766973096713",
+            "1766973479851",
+            "17669681482400.834256081105221",
+            "17669681482400.9213362136651995"
+        ],
+        "4-3-8": [
+            "1766972043222"
+        ],
+        "2-1-4": [
+            "1766971354855",
+            "1770007054446_61829_0"
+        ],
+        "5-3-4": [
+            "1766973096713",
+            "1766973479851",
+            "17669681482400.834256081105221",
+            "17669681482400.9213362136651995"
+        ],
+        "3-2-9": [
+            "17669681482400.1640974199420746",
+            "17669681482400.35509896009415376"
+        ],
+        "4-1-8": [
+            "1766971981494",
+            "17669681482400.7497183979272726"
+        ],
+        "5-2-3": [
+            "1766972979217",
+            "1770007054613_48680_0"
+        ],
+        "1-2-4": [
+            "1766971247855",
+            "17669681482400.2266848628670879"
+        ],
+        "2-4-6": [
+            "1766973008164",
+            "17669681482400.700763499703307"
+        ],
+        "1-3-7": [
+            "1766971261790",
+            "17669681482400.3371045580616051"
+        ],
+        "3-1-9": [
+            "1766971965147"
+        ],
+        "5-1-6": [
+            "1766971997057",
+            "1770007054581_92730_0"
+        ],
+        "4-3-4": [
+            "1766972927271",
+            "17669681482400.9709955412963336"
+        ],
+        "5-3-2": [
+            "1766973096713",
+            "1766973479851",
+            "17669681482400.834256081105221",
+            "17669681482400.9213362136651995"
+        ],
+        "4-3-6": [
+            "1766972043222",
+            "1770007278209"
+        ],
+        "5-2-4": [
+            "1766972979217",
+            "1770007054613_48680_0"
+        ],
+        "3-2-2": [
+            "1766972880657",
+            "17669681482400.6381487275453395"
+        ],
+        "5-3-6": [
+            "1766972823959",
+            "17669681482400.06813428801898491"
+        ],
+        "2-1-2": [
+            "1766971336775",
+            "1770007054486_69503_0"
+        ],
+        "2-3-6": [
+            "1766972823958",
+            "17669681482400.6874925247430597"
+        ],
+        "4-3-3": [
+            "1766972927271",
+            "17669681482400.9709955412963336"
+        ],
+        "2-2-6": [
+            "1766971280320",
+            "1770007054613_48680_1"
+        ],
+        "1-1-7": [
+            "1766971997056",
+            "17669681482400.9197871862683656"
+        ],
+        "5-4-2": [
+            "1766973553341"
+        ],
+        "2-3-4": [
+            "1766972962404",
+            "1766973288249",
+            "17669681482400.6237361928016808",
+            "17669681482400.3444153806280098"
+        ],
+        "2-1-6": [
+            "1766972897668"
+        ],
+        "4-4-7": [
+            "1766973115301",
+            "1766989068142",
+            "1770007298807"
+        ],
+        "2-2-4": [
+            "1766973084388",
+            "17669681482400.4032978605681832"
+        ],
+        "4-2-8": [
+            "1766972916605",
+            "17669681482400.5269612129850628"
+        ],
+        "2-4-3": [
+            "1766972795833",
+            "17669681482400.16307249827973758"
+        ],
+        "1-2-3": [
+            "1766971247855",
+            "17669681482400.2266848628670879"
+        ],
+        "3-3-7": [
+            "1766973310759",
+            "17669681482400.7373189113608661"
+        ],
+        "4-4-2": [
+            "1766973408190"
+        ],
+        "2-1-7": [
+            "1766972897668"
+        ],
+        "4-1-4": [
+            "1766973151148"
+        ],
+        "3-4-6": [
+            "1766972807070",
+            "17669681482400.1486890310245269"
+        ],
+        "3-1-6": [
+            "1766972897667",
+            "1770007054581_92730_1"
+        ],
+        "5-4-3": [
+            "1766973553341",
+            "1768037455857"
+        ],
+        "5-1-2": [
+            "1766971354854",
+            "1770007054446_61829_1"
+        ],
+        "2-2-3": [
+            "1766973084388",
+            "17669681482400.4032978605681832"
+        ],
+        "4-1-9": [
+            "1766971981494"
+        ],
+        "1-2-6": [
+            "17669681482400.5717568539775281",
+            "1766972979216"
+        ],
+        "1-3-4": [
+            "1766972023347",
+            "1766973068327"
+        ],
+        "3-1-8": [
+            "1766971965147"
+        ],
+        "1-3-2": [
+            "1766972023347",
+            "1766973068327"
+        ],
+        "4-2-7": [
+            "1766972916605",
+            "17669681482400.5269612129850628"
+        ],
+        "5-1-3": [
+            "1766971336776",
+            "1770007054486_69503_1"
+        ],
+        "4-3-2": [
+            "1766972927271",
+            "17669681482400.9709955412963336"
+        ],
+        "2-2-8": [
+            "1766971280320",
+            "17669681482400.19072838632442368"
+        ],
+        "1-1-6": [
+            "1766973151147",
+            "17669681482400.9197871862683656"
+        ],
+        "3-2-8": [
+            "1766971296464",
+            "1766973340741",
+            "17669681482400.1640974199420746",
+            "17669681482400.35509896009415376"
+        ],
+        "4-2-2": [
+            "1766973366600",
+            "1766973391779",
+            "17669681482400.39560414631553964",
+            "17669681482400.5478040694161868"
+        ],
+        "4-4-4": [
+            "1766973408190"
+        ],
+        "1-3-5": [
+            "1766971261790",
+            "17669681482400.3371045580616051"
+        ],
+        "2-3-7": [
+            "17669681482400.6874925247430597",
+            "17669681482400.26132063910815706"
+        ],
+        "3-4-4": [
+            "1766971378465"
+        ],
+        "4-4-3": [
+            "1766973408190"
+        ],
+        "1-1-1": [
+            "17669681482400.39755785659675624"
+        ],
+        "2-2-7": [
+            "1766971280320",
+            "17669681482400.19072838632442368"
+        ],
+        "2-4-2": [
+            "1766972795833",
+            "17669681482400.16307249827973758"
+        ],
+        "3-4-7": [
+            "1766972807070",
+            "17669681482400.1486890310245269"
+        ],
+        "5-4-4": [
+            "1766973553341",
+            "1768037455857"
+        ],
+        "2-1-3": [
+            "1766971354855",
+            "1770007054446_61829_0"
+        ],
+        "1-3-6": [
+            "1766971261790",
+            "17669681482400.3371045580616051"
+        ],
+        "2-4-7": [
+            "1766973008164",
+            "17669681482400.700763499703307"
+        ],
+        "3-4-3": [
+            "1766971378465"
+        ],
+        "4-4-6": [
+            "1766973038974",
+            "1770007278210"
+        ],
+        "2-4-4": [
+            "1766972795833",
+            "17669681482400.16307249827973758"
+        ],
+        "3-3-8": [
+            "1766973310759",
+            "17669681482400.7373189113608661"
+        ],
+        "3-2-7": [
+            "1766971296464",
+            "1766973340741",
+            "17669681482400.1640974199420746"
+        ],
+        "4-1-3": [
+            "1766973151148"
+        ],
+        "3-2-6": [
+            "1766971296464",
+            "1770007054689_42016_1"
+        ],
+        "1-2-N": [
+            "17669681482400.5717568539775281"
+        ],
+        "2-3-3": [
+            "1766972962404",
+            "1766973288249",
+            "17669681482400.6237361928016808",
+            "17669681482400.3444153806280098"
+        ],
+        "1-3-3": [
+            "1766972023347",
+            "1766973068327"
+        ],
+        "4-1-7": [
+            "1766971981494",
+            "17669681482400.7497183979272726"
+        ],
+        "4-2-4": [
+            "1766973366600",
+            "1766973391779",
+            "17669681482400.39560414631553964",
+            "17669681482400.5478040694161868"
+        ],
+        "3-3-6": [
+            "1766973310759",
+            "17669681482400.7373189113608661"
+        ],
+        "3-2-3": [
+            "1766972880657",
+            "17669681482400.6381487275453395"
+        ],
+        "5-4-N": [
+            "1768037455857"
+        ],
+        "2-1-": [
+            "1770007054446_61829_0",
+            "1770007054486_69503_0"
+        ],
+        "4-1-1": [
+            "1770007054518_74465_0"
+        ],
+        "4-1-2": [
+            "1770007054518_74465_0"
+        ],
+        "2-1-8": [
+            "1770007054518_74465_1"
+        ],
+        "2-1-9": [
+            "1770007054518_74465_1"
+        ],
+        "1-1-8": [
+            "17669681482400.9197871862683656"
+        ],
+        "4-1-6": [
+            "17669681482400.7497183979272726"
+        ],
+        "2-2-9": [
+            "17669681482400.19072838632442368"
+        ],
+        "5-2-6": [
+            "1770007054689_42016_0"
+        ],
+        "5-2-7": [
+            "1770007054689_42016_0"
+        ],
+        "2-3-5": [
+            "17669681482400.6874925247430597"
+        ],
+        "2-3-8": [
+            "17669681482400.26132063910815706"
+        ],
+        "2-3-9": [
+            "17669681482400.26132063910815706"
+        ],
+        "3-3-2": [
+            "17669681482400.5838991391980668"
+        ],
+        "3-3-3": [
+            "17669681482400.5838991391980668"
+        ],
+        "3-3-4": [
+            "17669681482400.5838991391980668"
+        ],
+        "5-3-5": [
+            "17669681482400.06813428801898491"
+        ],
+        "6-3-2": [
+            "1766978422853"
+        ],
+        "6-3-3": [
+            "1766978422853"
+        ],
+        "6-3-4": [
+            "1766978422853"
+        ],
+        "1-4-2": [
+            "17669681482400.6327013824310082"
+        ],
+        "1-4-3": [
+            "17669681482400.6327013824310082"
+        ],
+        "1-4-4": [
+            "17669681482400.6327013824310082"
+        ],
+        "1-4-7": [
+            "17669681482400.4256641519111619"
+        ],
+        "1-4-8": [
+            "17669681482400.4256641519111619"
+        ],
+        "1-4-9": [
+            "17669681482400.4256641519111619"
+        ],
+        "1-1-5": [
+            "dept_req_0_1774574089171"
+        ],
+        "2-1-5": [
+            "dept_req_1_1774574089171"
+        ],
+        "3-1-5": [
+            "dept_req_2_1774574089171"
+        ],
+        "4-1-5": [
+            "dept_req_3_1774574089171"
+        ],
+        "5-1-5": [
+            "dept_req_4_1774574089171"
+        ],
+        "1-1-3": [
+            "dept_req_5_1774574089171"
+        ],
+        "1-1-4": [
+            "dept_req_5_1774574089171"
+        ],
+        "3-1-3": [
+            "dept_req_5_1774574089171"
+        ],
+        "3-1-4": [
+            "dept_req_5_1774574089171"
+        ],
+        "5-2-1": [
+            "dept_req_6_1774574089171"
+        ],
+        "5-2-2": [
+            "dept_req_6_1774574089171"
+        ],
+        "5-1-8": [
+            "dept_req_7_1774574089171"
+        ],
+        "5-1-9": [
+            "dept_req_7_1774574089171"
+        ],
+        "3-1-1": [
+            "dept_req_8_1774574089171"
+        ],
+        "3-1-2": [
+            "dept_req_8_1774574089171"
+        ],
+        "4-2-5": [
+            "dept_req_9_1774574089171"
+        ],
+        "4-2-6": [
+            "dept_req_9_1774574089171"
+        ]
+    },
+    "teacherEvents_115": [],
+    "teacherAvailability_115": [],
+    "teacherAvailability_114": {
+        "何旻原": [],
+        "陳錡楓": [
+            "1-2",
+            "2-2",
+            "3-2",
+            "4-2",
+            "5-2",
+            "1-3",
+            "2-3",
+            "3-3",
+            "4-3",
+            "5-3",
+            "1-4",
+            "2-4",
+            "3-4",
+            "4-4",
+            "5-4",
+            "2-5",
+            "3-5",
+            "5-5",
+            "2-6",
+            "3-6",
+            "5-6",
+            "2-7",
+            "3-7",
+            "5-7"
+        ],
+        "黃家逸": [],
+        "鄒振東": [],
+        "林雅萍": [],
+        "許嘉緯": []
+    },
+    "teacherCategories_global": {
+        "通訊": [
+            "鐘玉芳",
+            "陳錡楓",
+            "梁新潁"
+        ],
+        "IC": [
+            "蔡坤霖"
+        ],
+        "機器人": [
+            "苗新元",
+            "陳昱仁",
+            "許銘全"
+        ],
+        "半導體": [
+            "劉日新",
+            "田青禾",
+            "劉志毅"
+        ]
+    },
+    "courses_115": [
+        {
+            "id": "dept_req_6_1774574100358",
+            "name": "英文(校) (必)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1775780204075",
+            "name": "英文(校)(1)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": true,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all",
+            "parentId": "dept_req_5_1774574100358"
+        },
+        {
+            "id": "1775780204076",
+            "name": "英文(校)(2)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": true,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all",
+            "parentId": "dept_req_5_1774574100358"
+        },
+        {
+            "id": "dept_req_7_1774574100358",
+            "name": "國文(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_0_1774574100358",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_1_1774574100358",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_2_1774574100358",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_3_1774574100358",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_4_1774574100358",
+            "name": "勞作(校)",
+            "teacher": "校必修",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_8_1774574100358",
+            "name": "體育(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "dept_req_9_1774574100358",
+            "name": "體育(校)",
+            "teacher": "校必修",
+            "periods": 2,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "isDeptReq": true,
+            "isLocked": false,
+            "semester": 3,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "name": "半導體封裝 (選)",
+            "allowedGrades": [
+                4
+            ],
+            "semester": 1,
+            "periods": 3,
+            "isSplit": false,
+            "id": "17743977980790.8399538749681092",
+            "teacher": "田青禾",
+            "isIndependent": false,
+            "courseType": "elective"
+        },
+        {
+            "isIndependent": false,
+            "courseType": "elective",
+            "id": "17743977980790.12909516742076454",
+            "allowedGrades": [
+                3
+            ],
+            "periods": 3,
+            "name": "發光二極體原理與應用 (選)",
+            "semester": 1,
+            "teacher": "田青禾",
+            "isSplit": false
+        },
+        {
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "periods": 2,
+            "name": "電子學(Ⅰ) (2)",
+            "teacher": "田青禾",
+            "id": "17743977980790.4990630663186927",
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 1,
+            "parentId": null
+        },
+        {
+            "isIndependent": true,
+            "periods": 1,
+            "courseType": "required",
+            "name": "電子學(Ⅰ) (必)",
+            "semester": 1,
+            "isSplit": false,
+            "teacher": "田青禾",
+            "parentId": null,
+            "allowedGrades": [
+                2
+            ],
+            "id": "17743977980790.9495289293978411",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1774410692538",
+            "name": "電工實驗（Ⅰ） (必) [ST122]",
+            "teacher": "田青禾",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "B"
+        },
+        {
+            "id": "1774410729253",
+            "name": "電工實驗（Ⅰ） (必) [ST122]",
+            "teacher": "田青禾",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "A"
+        },
+        {
+            "id": "1776218115631",
+            "name": "半導體元件分析技術 (選)",
+            "teacher": "劉志毅",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1774484198233",
+            "name": "矽光子導論 (選)",
+            "teacher": "劉志毅",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1
+        },
+        {
+            "isIndependent": false,
+            "allowedGrades": [
+                4
+            ],
+            "isSplit": false,
+            "name": "專題討論(三) (必)",
+            "periods": 2,
+            "courseType": "required",
+            "semester": 1,
+            "id": "17744086316900.575122520640221",
+            "teacher": "劉志毅"
+        },
+        {
+            "id": "17743977980790.27838187769040923",
+            "semester": 1,
+            "courseType": "required",
+            "allowedGrades": [
+                3
+            ],
+            "periods": 1,
+            "name": "電磁學(Ⅱ) (必)",
+            "parentId": null,
+            "isIndependent": true,
+            "isSplit": false,
+            "teacher": "劉志毅",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "allowedGrades": [
+                3
+            ],
+            "teacher": "劉志毅",
+            "parentId": null,
+            "courseType": "required",
+            "isIndependent": true,
+            "periods": 2,
+            "isSplit": false,
+            "semester": 1,
+            "name": "電磁學(Ⅱ) (必)",
+            "id": "17743977980790.8269449057961358",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "periods": 3,
+            "isIndependent": true,
+            "semester": 1,
+            "isSplit": false,
+            "name": "科技英文 (必)",
+            "teacher": "鐘玉芳, 江岱倫",
+            "courseType": "required",
+            "id": "17743977980790.28263415503364153",
+            "allowedGrades": [
+                4
+            ],
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "periods": 2,
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "name": "程式設計 (必) [ST]",
+            "parentId": null,
+            "isSplit": false,
+            "id": "17744086316900.06364822236417855",
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "required",
+            "idFilter": "all",
+            "classFilter": "A"
+        },
+        {
+            "isSplit": false,
+            "courseType": "required",
+            "isIndependent": false,
+            "id": "17743977980790.22188117362178283",
+            "teacher": "鐘玉芳",
+            "allowedGrades": [
+                1
+            ],
+            "name": "程式設計 (必) [ST]",
+            "semester": 1,
+            "parentId": null,
+            "periods": 1,
+            "idFilter": "all",
+            "classFilter": "B"
+        },
+        {
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "name": "程式設計 (必) [ST]",
+            "periods": 1,
+            "id": "17744086316900.2629436626244813",
+            "teacher": "鐘玉芳",
+            "parentId": null,
+            "isIndependent": false,
+            "semester": 1,
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "A"
+        },
+        {
+            "id": "17744086316900.14437072870515233",
+            "name": "程式設計B (必) [ST]",
+            "teacher": "鐘玉芳",
+            "isIndependent": false,
+            "courseType": "required",
+            "allowedGrades": [
+                1
+            ],
+            "periods": 2,
+            "parentId": null,
+            "semester": 1,
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "B"
+        },
+        {
+            "isIndependent": false,
+            "id": "17743977980790.41149131333014066",
+            "name": "智慧物聯網軟硬體整合實作 (選) [ST]",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "periods": 3,
+            "courseType": "elective",
+            "teacher": "苗新元",
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "periods": 3,
+            "allowedGrades": [
+                2
+            ],
+            "isIndependent": false,
+            "courseType": "elective",
+            "isSplit": false,
+            "teacher": "苗新元",
+            "name": "感測器原理之視覺感測粒子控制 (選)",
+            "semester": 1,
+            "id": "17743977980790.6934231539705769"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "isSplit": false,
+            "courseType": "elective",
+            "semester": 1,
+            "teacher": "苗新元",
+            "periods": 3,
+            "name": "電子電路軟體實習 (選) [ST]",
+            "id": "17743977980790.7263047160922171",
+            "isIndependent": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "isIndependent": true,
+            "semester": 1,
+            "periods": 3,
+            "isSplit": false,
+            "teacher": "苗新元",
+            "courseType": "required",
+            "name": "電路學(Ⅰ) (必)",
+            "id": "17743977980790.3166833777710244"
+        },
+        {
+            "id": "1774410262916",
+            "name": "工程數學（Ⅱ） (必)",
+            "teacher": "梁新潁",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "required",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "B"
+        },
+        {
+            "id": "1776048290270",
+            "name": "基礎通訊實驗 (選) [HT108]",
+            "teacher": "梁新潁",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "semester": 1,
+            "periods": 2,
+            "id": "17743977980790.21534289185146105",
+            "isSplit": false,
+            "name": "專題討論(一) (必)",
+            "teacher": "梁新潁",
+            "courseType": "required",
+            "allowedGrades": [
+                3,
+                4
+            ],
+            "isIndependent": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1776047215692",
+            "name": "機率與統計 (選)",
+            "teacher": "梁新潁",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "teacher": "許銘全",
+            "id": "17743977980790.6306713719474345",
+            "periods": 3,
+            "name": "工程數學（Ⅱ） (必)",
+            "isIndependent": false,
+            "isSplit": false,
+            "courseType": "required",
+            "allowedGrades": [
+                2
+            ],
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "A"
+        },
+        {
+            "teacher": "許銘全",
+            "id": "17743977980790.7307939112718401",
+            "courseType": "elective",
+            "name": "系統動力學 (選)",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "isIndependent": false,
+            "periods": 3,
+            "isSplit": false
+        },
+        {
+            "id": "1778724009800",
+            "name": "智慧綠能工程專題 (選)",
+            "teacher": "許銘全, ",
+            "periods": 1,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "name": "電機機械 (選)",
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "id": "17743977980790.014717438650693082",
+            "teacher": "許銘全",
+            "semester": 1,
+            "courseType": "elective",
+            "isIndependent": false,
+            "periods": 3
+        },
+        {
+            "periods": 1,
+            "teacher": "蔡坤霖",
+            "id": "17743977980790.715079208078151",
+            "isSplit": false,
+            "name": "邏輯設計 (1)",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "parentId": null,
+            "semester": 1
+        },
+        {
+            "isSplit": false,
+            "id": "17744086316900.32912925926998526",
+            "isIndependent": true,
+            "courseType": "required",
+            "allowedGrades": [
+                1
+            ],
+            "name": "邏輯設計 (2)",
+            "teacher": "蔡坤霖",
+            "parentId": null,
+            "semester": 1,
+            "periods": 2
+        },
+        {
+            "semester": 1,
+            "id": "17744086316900.9617555714519748",
+            "allowedGrades": [
+                1
+            ],
+            "periods": 3,
+            "name": "邏輯設計實驗 (必) [ST122]",
+            "courseType": "required",
+            "isIndependent": false,
+            "teacher": "蔡坤霖",
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "B"
+        },
+        {
+            "semester": 1,
+            "teacher": "蔡坤霖",
+            "periods": 3,
+            "courseType": "required",
+            "isSplit": false,
+            "id": "17743977980790.5123839194850063",
+            "allowedGrades": [
+                1
+            ],
+            "name": "邏輯設計實驗 (必) [ST122]",
+            "isIndependent": false,
+            "idFilter": "all",
+            "classFilter": "A"
+        },
+        {
+            "id": "1777963942150",
+            "name": "深度學習基礎概論與實作 [HT108]",
+            "teacher": "王慶萍",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                3
+            ],
+            "courseType": "none",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1777963926991",
+            "name": "電腦網路概論",
+            "teacher": "王慶萍",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                2
+            ],
+            "courseType": "none",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "1777963884885",
+            "name": "影像處理與電腦視覺 (選) [ST]",
+            "teacher": "王慶萍",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "periods": 3,
+            "name": "智慧型機器人系統 (選) [HT108]",
+            "teacher": "陳昱仁",
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "elective",
+            "id": "17743977980790.03833658322996514",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "allowedGrades": [
+                2
+            ],
+            "semester": 1,
+            "periods": 3,
+            "isIndependent": false,
+            "teacher": "陳昱仁",
+            "courseType": "elective",
+            "isSplit": false,
+            "id": "17743977980790.5823144256033124",
+            "name": "智慧電子應用設計實驗 (選) [HT108]",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "courseType": "required",
+            "teacher": "陳昱仁",
+            "id": "17743977980790.8214440600735784",
+            "name": "線性代數 (必)",
+            "periods": 3,
+            "semester": 1,
+            "allowedGrades": [
+                1
+            ],
+            "isIndependent": true,
+            "isSplit": false,
+            "parentId": null,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "17743977980790.814250798469136",
+            "name": "微積分甲〈一〉 (必)",
+            "periods": 2,
+            "teacher": "林佳威",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 1,
+            "parentId": null,
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "17743977980790.3407675415052547",
+            "name": "微積分甲〈一〉 (必)",
+            "periods": 2,
+            "teacher": "林佳威",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 1,
+            "parentId": null,
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "name": "普通物理 (必)",
+            "isSplit": false,
+            "parentId": null,
+            "isIndependent": true,
+            "semester": 1,
+            "courseType": "required",
+            "teacher": "林宗欣",
+            "id": "17743977980790.6817998856640872",
+            "periods": 2,
+            "allowedGrades": [
+                1
+            ],
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "courseType": "required",
+            "parentId": null,
+            "teacher": "林宗欣",
+            "allowedGrades": [
+                1
+            ],
+            "isSplit": false,
+            "periods": 1,
+            "isIndependent": true,
+            "semester": 1,
+            "name": "普通物理 (必)",
+            "id": "17743977980790.3988015796615264",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "courseType": "elective",
+            "allowedGrades": [
+                4
+            ],
+            "isIndependent": false,
+            "id": "17743977980790.5390300010207127",
+            "teacher": "陳錡楓",
+            "periods": 3,
+            "isSplit": false,
+            "name": "毫米波電路設計與模擬 (選) [HT108]",
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "semester": 1,
+            "courseType": "elective",
+            "isIndependent": false,
+            "id": "17744086316900.5362444837645286",
+            "isSplit": false,
+            "name": "微波工程 (選)",
+            "teacher": "陳錡楓",
+            "periods": 3,
+            "allowedGrades": [
+                4
+            ]
+        },
+        {
+            "name": "超大型積體電路設計導論 (選)",
+            "isIndependent": false,
+            "teacher": "黃宇中",
+            "semester": 1,
+            "allowedGrades": [
+                3
+            ],
+            "isSplit": false,
+            "periods": 3,
+            "id": "17743977980790.7419700014646551",
+            "courseType": "elective"
+        },
+        {
+            "id": "1776239908498",
+            "name": "機器人實務 (選) [HT108]",
+            "teacher": "黃宇中",
+            "periods": 3,
+            "isSplit": false,
+            "allowedGrades": [
+                4
+            ],
+            "courseType": "elective",
+            "isIndependent": false,
+            "semester": 1,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "periods": 3,
+            "isIndependent": false,
+            "name": "半導體元件物理 (選)",
+            "allowedGrades": [
+                3
+            ],
+            "id": "17743977980790.40289288013268254",
+            "courseType": "elective",
+            "isSplit": false,
+            "teacher": "劉日新",
+            "semester": 1
+        },
+        {
+            "allowedGrades": [
+                3
+            ],
+            "id": "17743977980790.025083683354915287",
+            "courseType": "elective",
+            "name": "半導體材料與元件實驗 (選) [HT108]",
+            "teacher": "劉日新",
+            "isIndependent": false,
+            "periods": 3,
+            "semester": 1,
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "id": "17744086316900.8995562243070172",
+            "name": "微積分甲〈二〉 [SS108] (必)(2)",
+            "periods": 2,
+            "teacher": "林雅萍",
+            "allowedGrades": [
+                1
+            ],
+            "courseType": "required",
+            "isIndependent": true,
+            "semester": 3,
+            "parentId": null,
+            "isSplit": false
+        },
+        {
+            "allowedGrades": [
+                4
+            ],
+            "teacher": "許嘉緯",
+            "name": "半導體光電元件 (選)",
+            "periods": 3,
+            "semester": 1,
+            "isIndependent": false,
+            "courseType": "elective",
+            "isSplit": false,
+            "id": "17744086316900.9746633957890649"
+        },
+        {
+            "name": "生醫晶片實務應用 (選)",
+            "teacher": "陳俊宏",
+            "periods": 3,
+            "semester": 1,
+            "isSplit": false,
+            "id": "17744086316900.17895514260777468",
+            "isIndependent": false,
+            "courseType": "elective",
+            "allowedGrades": []
+        },
+        {
+            "id": "17744086316900.9590212469987754",
+            "name": "通訊原理   (選)",
+            "periods": 3,
+            "isSplit": false,
+            "semester": 1,
+            "courseType": "elective",
+            "teacher": "黃永發",
+            "allowedGrades": [],
+            "isIndependent": false
+        },
+        {
+            "allowedGrades": [
+                4
+            ],
+            "isIndependent": false,
+            "semester": 1,
+            "courseType": "elective",
+            "periods": 3,
+            "id": "17744086316900.6456593676092718",
+            "isSplit": false,
+            "name": "行動通訊技術與應用 (選) [HT109]",
+            "teacher": "溫志宏",
+            "idFilter": "all",
+            "classFilter": "all"
+        },
+        {
+            "name": "AI技術 x SEL素養的競爭力養成AI技術 (選)",
+            "courseType": "elective",
+            "teacher": "蔡家幸",
+            "isSplit": false,
+            "isIndependent": false,
+            "periods": 2,
+            "semester": 1,
+            "id": "17744086316900.7526947103119886",
+            "allowedGrades": [
+                2
+            ]
+        },
+        {
+            "isIndependent": false,
+            "teacher": "蔣惟丞",
+            "semester": 1,
+            "id": "17743977980790.36013883274579817",
+            "courseType": "elective",
+            "periods": 3,
+            "allowedGrades": [
+                2
+            ],
+            "name": "資料結構 (選)",
+            "isSplit": false,
+            "idFilter": "all",
+            "classFilter": "all"
+        }
+    ],
+    "teacherCategories_114": {
+        "分類1": [
+            "教授1",
+            "教授2"
+        ],
+        "分類2": [
+            "教授1",
+            "教授2"
+        ],
+        "分類3": [
+            "教授1",
+            "教授2"
+        ],
+        "分類4": [
+            "教授1",
+            "教授2"
+        ]
+    },
+    "timestamp": 1779085083,
+    "last_updated_datetime": "2026-05-18 14:18:03"
+}

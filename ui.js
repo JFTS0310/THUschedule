@@ -845,7 +845,7 @@ function renderTimetable() {
                     div.draggable = !isReadOnly && !course.isLocked;
                     
                     div.oncontextmenu = (e) => {
-                        e.preventDefault(); 
+                        e.preventDefault();
                         if (!isReadOnly) {
                             if (course.isLocked && course.isDeptReq) {
                                 Swal.fire('無法編輯', '校必修課程已鎖定，無法直接編輯', 'info');
@@ -854,7 +854,19 @@ function renderTimetable() {
                             }
                         }
                     };
-                    
+
+                    // 手機：點擊開啟編輯（桌機由右鍵處理）
+                    div.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768 && !isReadOnly) {
+                            e.stopPropagation();
+                            if (course.isDeptReq) {
+                                Swal.fire('無法編輯', '校必修課程已鎖定', 'info');
+                            } else if (!course.isLocked) {
+                                openEditModal(course.id);
+                            }
+                        }
+                    });
+
                     if (!isReadOnly && !course.isLocked) {
                         div.title = "💡 提示：右鍵點擊可快速編輯課程";
                     }
@@ -1346,7 +1358,8 @@ function addCourse() {
             if(!teacherColors[t]) teacherColors[t] = SOFT_COLORS[Object.keys(teacherColors).length % SOFT_COLORS.length];
         });
 
-        save(); render(); closeModal(); 
+        save(); render(); closeModal();
+        if (window.innerWidth <= 768 && typeof closeMobileSidebar === 'function') closeMobileSidebar();
         document.getElementById('mName').value = ''; document.getElementById('mTeacher').value = ''; document.querySelectorAll('#mGradeContainer input').forEach(cb => cb.checked = false);
         document.querySelector('input[name="mType"][value="none"]').checked = true; document.querySelector('input[name="mSem"][value="3"]').checked = true; 
         document.querySelector('input[name="mIdFilter"][value="all"]').checked = true; 

@@ -640,6 +640,11 @@ body.dark-mode .course-block-preview {
         display: inline-flex !important;
     }
 
+    /* Modal 層級高於底部導覽列 */
+    .modal {
+        z-index: 250 !important;
+    }
+
     /* 手機版遮罩 */
     .mobile-overlay {
         display: none;
@@ -730,4 +735,30 @@ body.dark-mode .mobile-nav-item.is-active {
 }
 body.dark-mode .mobile-overlay {
     background: rgba(0, 0, 0, 0.7);
+}
+
+/* ===== 匯出模式：強制桌機版寬度渲染 ===== */
+body.is-exporting .app-container {
+    flex-direction: row !important;
+    width: 2000px !important;
+    max-width: 2000px !important;
+    height: 90vh !important;
+}
+body.is-exporting .main-content {
+    width: auto !important;
+    max-width: none !important;
+    overflow: hidden !important;
+    flex: 1 !important;
+}
+body.is-exporting .timetable-container {
+    overflow: hidden !important;
+    height: 100% !important;
+}
+body.is-exporting .screenshot-wrapper {
+    min-width: unset !important;
+    height: 100% !important;
+}
+body.is-exporting .timetable {
+    min-width: unset !important;
+    height: 100% !important;
 }

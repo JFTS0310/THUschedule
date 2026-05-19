@@ -1600,6 +1600,86 @@ function exportToICS() {
 
 /* ===== 手機版互動函數 ===== */
 
+// --- Body scroll lock（解決 iOS 滑動穿透問題）---
+let _mobileScrollY = 0;
+
+function lockBodyScroll() {
+    if (window.innerWidth > 768) return;
+    _mobileScrollY = window.scrollY;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${_mobileScrollY}px`;
+    document.body.style.width = '100%';
+}
+
+function unlockBodyScroll() {
+    if (window.innerWidth > 768) return;
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, _mobileScrollY);
+}
+
+// --- Modal 高度精確計算（解決 iOS vh bug）---
+function fixMobileModalHeight(modalEl) {
+    if (window.innerWidth > 768 || !modalEl) return;
+    const card = modalEl.querySelector('.modal-card');
+    if (!card) return;
+
+    const availH = window.innerHeight - 65; // 65px = bottom nav
+    card.style.maxHeight = availH + 'px';
+    card.style.height = 'auto';
+
+    requestAnimationFrame(() => {
+        const head = card.querySelector('.modal-card-head');
+        const foot = card.querySelector('.modal-card-foot');
+        const body = card.querySelector('.modal-card-body');
+        if (!body) return;
+        const headH = head ? head.getBoundingClientRect().height : 0;
+        const footH = foot ? foot.getBoundingClientRect().height : 0;
+        const bodyH = Math.max(availH - headH - footH - 2, 100);
+        body.style.height = bodyH + 'px';
+        body.style.maxHeight = bodyH + 'px';
+        body.style.overflowY = 'auto';
+        body.style.webkitOverflowScrolling = 'touch';
+        body.style.flex = 'none';
+    });
+}
+
+// --- MutationObserver：監聽所有 Modal 開關 ---
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth > 768) return;
+
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(({ target, attributeName }) => {
+            if (attributeName !== 'class' || !target.classList.contains('modal')) return;
+            if (target.classList.contains('is-active')) {
+                closeMobileSidebar();
+                lockBodyScroll();
+                setTimeout(() => fixMobileModalHeight(target), 40);
+            } else {
+                // 只有在沒有其他 modal 開著時才 unlock
+                const stillOpen = document.querySelector('.modal.is-active');
+                if (!stillOpen) unlockBodyScroll();
+            }
+        });
+    });
+
+    document.querySelectorAll('.modal').forEach(m =>
+        observer.observe(m, { attributes: true, attributeFilter: ['class'] })
+    );
+
+    // 防止手指在 modal 背景滑動時捲動底層頁面
+    document.addEventListener('touchmove', e => {
+        const activeModal = document.querySelector('.modal.is-active');
+        if (!activeModal) return;
+        if (!e.target.closest('.modal-card-body') && !e.target.closest('.modal-content')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+});
+
 function toggleMobileSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('mobileOverlay');

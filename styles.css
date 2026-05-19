@@ -596,35 +596,39 @@ body.dark-mode .course-block-preview {
         height: 22px;
     }
 
-    /* 模態視窗：固定高度讓 footer 永遠可見、body 可捲動 */
+    /* 手機版 Modal：底部彈出式 bottom-sheet */
+    .modal {
+        z-index: 250 !important;
+        align-items: flex-end !important;  /* 靠底部 */
+    }
+
     .modal-card {
-        width: 96vw !important;
-        max-width: 96vw !important;
-        margin: 10px auto !important;
-        max-height: 88vh !important;
-        max-height: 88dvh !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 18px 18px 0 0 !important;
+        /* 高度由 JS 精確計算，CSS 只設最低保障 */
         display: flex !important;
         flex-direction: column !important;
-        border-radius: 10px !important;
+        overflow: hidden !important;
     }
 
     .modal-card-head {
         flex-shrink: 0 !important;
-        padding: 10px 14px !important;
+        border-radius: 18px 18px 0 0 !important;
     }
 
     .modal-card-body {
-        flex: 1 1 auto !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
-        min-height: 0 !important;
-        padding: 12px 14px !important;
+        overscroll-behavior: contain !important;
+        /* height 由 JS 設定 */
     }
 
     .modal-card-foot {
         flex-shrink: 0 !important;
-        padding: 10px 14px !important;
         justify-content: flex-end !important;
+        padding: 12px 16px !important;
     }
 
     /* 歡迎選擇模式的視窗 */
@@ -632,17 +636,13 @@ body.dark-mode .course-block-preview {
         width: 95vw !important;
         max-height: 85vh !important;
         overflow-y: auto !important;
-        border-radius: 10px !important;
+        border-radius: 14px !important;
+        margin: auto !important;
     }
 
     /* 手機版側欄觸發按鈕 */
     .mobile-sidebar-toggle {
         display: inline-flex !important;
-    }
-
-    /* Modal 層級高於底部導覽列 */
-    .modal {
-        z-index: 250 !important;
     }
 
     /* 手機版遮罩 */

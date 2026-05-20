@@ -447,9 +447,8 @@ function adjustCourseFonts() {
         const textLength = nameDiv ? nameDiv.innerText.length : 0;
 
         if (textLength <= 4) calcSize = width / 2.5;
-        const isExportMode = document.body.classList.contains('is-exporting');
         let finalSize = Math.floor(calcSize);
-        if (finalSize > (isExportMode ? 22 : 15)) finalSize = isExportMode ? 22 : 15;
+        if (finalSize > 15) finalSize = 15;
         if (nameDiv && nameDiv.innerText.length > 6 && duration === 1) finalSize -= 2.5;
 
         // 極限字體縮放

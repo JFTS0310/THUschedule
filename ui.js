@@ -434,14 +434,18 @@ function render() {
 
 function adjustCourseFonts() {
     const blocks = document.querySelectorAll('.course-block');
+    const wrapper = document.querySelector('.screenshot-wrapper');
+    // getBoundingClientRect 會回傳縮放後的視覺尺寸，需除以 zoom 還原真實寬度
+    const zoomFactor = parseFloat(wrapper?.style.zoom) || 1;
+
     blocks.forEach(block => {
-        const width = block.getBoundingClientRect().width; 
+        const width = block.getBoundingClientRect().width / zoomFactor;
         const duration = parseInt(block.getAttribute('data-duration')) || 1;
-        
-        let calcSize = width / 3.2; 
-        const nameDiv = block.querySelector('div:first-child'); 
+
+        let calcSize = width / 3.2;
+        const nameDiv = block.querySelector('div:first-child');
         const textLength = nameDiv ? nameDiv.innerText.length : 0;
-        
+
         if (textLength <= 4) calcSize = width / 2.5;
         const isExportMode = document.body.classList.contains('is-exporting');
         let finalSize = Math.floor(calcSize);
@@ -450,13 +454,13 @@ function adjustCourseFonts() {
 
         // 極限字體縮放
         if (finalSize < 11) finalSize = (width < 35) ? 6.5 : 8.5;
-        
+
         block.style.fontSize = `${finalSize}px`;
 
         let infoDiv = block.querySelector('.course-info');
         if (infoDiv) {
             let infoSize = finalSize - 1.2;
-            if (infoSize < 6) infoSize = 6; // 最低字體極限 6px
+            if (infoSize < 6) infoSize = 6;
             infoDiv.style.fontSize = `${infoSize}px`;
             infoDiv.style.lineHeight = '1.05';
             infoDiv.style.marginTop = '1px';

@@ -783,6 +783,8 @@ function exportImage(type) {
 
     Swal.fire({ title: '處理中...', text: '正在產生高解析度圖片，請稍候', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     setTimeout(() => {
+        // 在 2000px 版面穩定後重新計算字體大小
+        if (typeof adjustCourseFonts === 'function') adjustCourseFonts();
         html2canvas(element, { scale: 2, useCORS: true, width: 2000, height: EXPORT_H, windowWidth: 2000 }).then(canvas => {
             document.body.classList.remove('is-exporting');
             sidebar.style.display = originalSidebarDisplay;

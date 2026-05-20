@@ -765,4 +765,13 @@ body.is-exporting .timetable {
     min-width: unset !important;
     height: 810px !important;
     width: 100% !important;
+    font-size: 13px !important;   /* 覆蓋手機版 10px */
+}
+body.is-exporting .timetable th {
+    font-size: 12px !important;   /* 覆蓋手機版 10px */
+    height: 28px !important;      /* 覆蓋手機版 22px */
+}
+body.is-exporting .timetable .time-col {
+    font-size: 10px !important;
+    width: 45px !important;
 }

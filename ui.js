@@ -442,12 +442,13 @@ function adjustCourseFonts() {
         const nameDiv = block.querySelector('div:first-child'); 
         const textLength = nameDiv ? nameDiv.innerText.length : 0;
         
-        if (textLength <= 4) calcSize = width / 2.5; 
-        let finalSize = Math.floor(calcSize); 
-        if (finalSize > 15) finalSize = 15; 
-        if (nameDiv && nameDiv.innerText.length > 6 && duration === 1) finalSize -= 2.5; 
-        
-        // 極限字體縮放：字體可以縮到 6.5px，確保不見
+        if (textLength <= 4) calcSize = width / 2.5;
+        const isExportMode = document.body.classList.contains('is-exporting');
+        let finalSize = Math.floor(calcSize);
+        if (finalSize > (isExportMode ? 22 : 15)) finalSize = isExportMode ? 22 : 15;
+        if (nameDiv && nameDiv.innerText.length > 6 && duration === 1) finalSize -= 2.5;
+
+        // 極限字體縮放
         if (finalSize < 11) finalSize = (width < 35) ? 6.5 : 8.5;
         
         block.style.fontSize = `${finalSize}px`;

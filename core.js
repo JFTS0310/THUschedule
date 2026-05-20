@@ -414,10 +414,16 @@ function performSave() {
 
 // 自動登入判斷機制
 window.addEventListener('DOMContentLoaded', () => {
+    const isMobile = window.innerWidth <= 768;
     const savedMode = localStorage.getItem('savedAppMode');
-    
-    // 如果有記憶過模式，直接關閉歡迎視窗並載入
-    if (savedMode === 'edit') {
+
+    // 手機版強制進入檢視模式，不顯示模式選擇
+    if (isMobile) {
+        isReadOnly = true;
+        closeModeModal();
+        updateUIForMode();
+        loadDataForYear();
+    } else if (savedMode === 'edit') {
         isReadOnly = false;
         closeModeModal();
         updateUIForMode();

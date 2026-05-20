@@ -315,7 +315,7 @@ function toggleDeptReqs() {
         Swal.fire('已移除', '電機系校必修已移除', 'success');
     } else {
         let newCourses = []; let conflictCount = 0;
-        DEPT_REQ_DATA.forEach((req, idx) => {
+        getDeptReqData().forEach((req, idx) => {
             let reqId = `dept_req_${idx}_${Date.now()}`; let reqSem = req.sem || 3; 
             req.days.forEach(d => {
                 req.periods.forEach(p => {
@@ -1091,9 +1091,15 @@ function findCommonFreeTime() {
         Swal.fire('無共同空堂', '找不到大家都有空的時段', 'info');
     } else {
         freeSlots.forEach(dp => {
-            document.querySelectorAll(`td[data-dp="${dp}"]`).forEach(td => {
-                td.classList.add('common-free-highlight');
-            });
+            if (selectedGrades.length > 0) {
+                // 只亮顯選中的年級欄位，避免誤標未選年級
+                selectedGrades.forEach(g => {
+                    let td = document.querySelector(`td[data-dp="${dp}"][data-grade="${g}"]`);
+                    if (td) td.classList.add('common-free-highlight');
+                });
+            } else {
+                document.querySelectorAll(`td[data-dp="${dp}"]`).forEach(td => td.classList.add('common-free-highlight'));
+            }
         });
         mergeHighlights('common-free-highlight');
         closeAnalysisModal();
@@ -1107,6 +1113,99 @@ function findCommonFreeTime() {
             showConfirmButton: false, timer: 3000
         });
     }
+}
+
+// ===== 校訂必修管理 =====
+function openDeptReqModal() {
+    document.getElementById('deptReqModal').classList.add('is-active');
+    renderDeptReqTable();
+}
+function closeDeptReqModal() {
+    document.getElementById('deptReqModal').classList.remove('is-active');
+}
+
+function renderDeptReqTable() {
+    const data = getDeptReqData();
+    const dayNames = { 1:'一', 2:'二', 3:'三', 4:'四', 5:'五', 6:'六', 7:'日' };
+    const semNames = { 1:'上學期', 2:'下學期', 3:'全學年' };
+    const gradeNames = ['大一','大二','大三','大四'];
+    let html = `<table class="table is-fullwidth is-bordered is-narrow is-striped" style="font-size:13px;">
+        <thead><tr><th>課程名稱</th><th>年級</th><th>星期</th><th>節次</th><th>學期</th><th>操作</th></tr></thead><tbody>`;
+    data.forEach((e, idx) => {
+        let daysStr = (e.days||[]).map(d => '週'+dayNames[d]).join(' ');
+        let perStr = (e.periods||[]).join(',');
+        html += `<tr><td>${e.name}</td><td>${gradeNames[e.grade-1]||e.grade}</td><td>${daysStr}</td><td>第${perStr}節</td><td>${semNames[e.sem]||'全學年'}</td>
+            <td style="white-space:nowrap">
+                <button class="button is-info is-small" onclick="editDeptReqEntry(${idx})">編輯</button>
+                <button class="button is-danger is-small ml-1" onclick="deleteDeptReqEntry(${idx})">刪除</button>
+            </td></tr>`;
+    });
+    html += `</tbody></table>`;
+    document.getElementById('deptReqTableContainer').innerHTML = html;
+}
+
+async function editDeptReqEntry(idx) {
+    const data = getDeptReqData();
+    const isNew = idx < 0;
+    const e = isNew ? { name: '', grade: 1, days: [], periods: [], sem: 3 } : data[idx];
+    const dayLabels = ['一','二','三','四','五','六','日'];
+    const dayCBs = dayLabels.map((lbl, i) => {
+        const v = i+1, chk = (e.days||[]).includes(v) ? 'checked' : '';
+        return `<label class="checkbox mr-2"><input type="checkbox" class="dept-day-cb" value="${v}" ${chk}> ${lbl}</label>`;
+    }).join('');
+    const gradeOpts = [1,2,3,4].map(g => `<option value="${g}" ${e.grade===g?'selected':''}>${['大一','大二','大三','大四'][g-1]}</option>`).join('');
+    const semOpts = [[1,'上學期'],[2,'下學期'],[3,'全學年']].map(([v,l]) => `<option value="${v}" ${e.sem===v?'selected':''}>${l}</option>`).join('');
+
+    const { value: result } = await Swal.fire({
+        title: isNew ? '新增校必修項目' : '編輯校必修項目',
+        html: `<div style="text-align:left">
+            <div class="field mb-2"><label class="label is-small">課程名稱</label><input id="deptName" class="input is-small" value="${e.name}" placeholder="例如: 英文"></div>
+            <div class="field mb-2"><label class="label is-small">年級</label><div class="select is-small"><select id="deptGrade">${gradeOpts}</select></div></div>
+            <div class="field mb-2"><label class="label is-small">星期（可複選）</label><div>${dayCBs}</div></div>
+            <div class="field mb-2"><label class="label is-small">節次（逗號分隔，例如 3,4 或 5）</label><input id="deptPeriods" class="input is-small" value="${(e.periods||[]).join(',')}" placeholder="例如: 1,2"></div>
+            <div class="field"><label class="label is-small">學期</label><div class="select is-small"><select id="deptSem">${semOpts}</select></div></div>
+        </div>`,
+        showCancelButton: true,
+        confirmButtonText: isNew ? '新增' : '儲存',
+        cancelButtonText: '取消',
+        preConfirm: () => {
+            const name = document.getElementById('deptName').value.trim();
+            const grade = parseInt(document.getElementById('deptGrade').value);
+            const days = Array.from(document.querySelectorAll('.dept-day-cb:checked')).map(c => parseInt(c.value));
+            const periods = document.getElementById('deptPeriods').value.split(',').map(p=>p.trim()).filter(p=>p);
+            const sem = parseInt(document.getElementById('deptSem').value);
+            if (!name) { Swal.showValidationMessage('課程名稱不能為空'); return false; }
+            if (!days.length) { Swal.showValidationMessage('請至少選擇一個星期'); return false; }
+            if (!periods.length) { Swal.showValidationMessage('請輸入節次'); return false; }
+            return { name, grade, days, periods, sem };
+        }
+    });
+    if (!result) return;
+    const latest = getDeptReqData();
+    if (isNew) latest.push(result); else latest[idx] = result;
+    localStorage.setItem('deptReqData', JSON.stringify(latest));
+    renderDeptReqTable();
+}
+
+function addDeptReqEntry() { editDeptReqEntry(-1); }
+
+function deleteDeptReqEntry(idx) {
+    Swal.fire({ title: '確定刪除此項目？', icon: 'warning', showCancelButton: true, confirmButtonText: '刪除', cancelButtonText: '取消' }).then(r => {
+        if (!r.isConfirmed) return;
+        const data = getDeptReqData();
+        data.splice(idx, 1);
+        localStorage.setItem('deptReqData', JSON.stringify(data));
+        renderDeptReqTable();
+    });
+}
+
+function resetDeptReqData() {
+    Swal.fire({ title: '恢復預設值？', text: '將回到系統內建的校必修時間設定', icon: 'warning', showCancelButton: true, confirmButtonText: '確定恢復', cancelButtonText: '取消' }).then(r => {
+        if (!r.isConfirmed) return;
+        localStorage.removeItem('deptReqData');
+        renderDeptReqTable();
+        Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '已恢復預設值', showConfirmButton: false, timer: 2000 });
+    });
 }
 
 function renderLegend() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>東海電機排課模擬器 by HC (v3.44 手機響應版)</title>
+    <title>東海排課系統 by HC＆JFTS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -18,7 +18,7 @@
     <div class="modal-background" style="background-color: rgba(0,0,0,0.9);"></div>
     <div class="modal-content" style="width: 600px; max-width: 90vw;">
         <div class="box mode-selection-content">
-            <h1 class="title is-4 mb-5">歡迎使用 東海電機排課模擬器 by HC (v3.44)</h1>
+            <h1 class="title is-4 mb-5">歡迎使用 東海排課系統 by HC＆JFTS</h1>
             <p class="subtitle is-6 mb-5">請選擇使用模式</p>
             <div class="columns">
                 <div class="column">
@@ -226,9 +226,40 @@
                     <input type="checkbox" id="settingSplitTeacher" onchange="updateSettings()"> 拆分課程時可指派不同授課教師
                 </label>
             </div>
+            <hr class="my-3">
+            <h3 class="title is-6 mb-2">🏫 校訂必修管理</h3>
+            <p class="help mb-2">設定「載入校必修」功能所使用的時間表，修改後重新載入即可生效。</p>
+            <button class="button is-warning is-light is-small is-fullwidth edit-only" onclick="openDeptReqModal()">
+                <span class="icon"><i class="fas fa-edit"></i></span><span>管理校訂必修時間</span>
+            </button>
         </section>
         <footer class="modal-card-foot py-3" style="justify-content: flex-end;">
             <button class="button is-primary is-small" onclick="closeSettingsModal()">完成</button>
+        </footer>
+    </div>
+</div>
+
+<div class="modal" id="deptReqModal">
+    <div class="modal-background" onclick="closeDeptReqModal()"></div>
+    <div class="modal-card" style="width: 720px; max-width: 95vw;">
+        <header class="modal-card-head py-3">
+            <p class="modal-card-title is-size-6"><span class="icon"><i class="fas fa-school"></i></span> 管理校訂必修時間</p>
+            <button class="delete" onclick="closeDeptReqModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="notification is-info is-light is-small p-2 mb-3">
+                每一列代表一筆排課記錄。修改後需重新點選「載入電機系校必修」才會更新課表。
+            </div>
+            <div id="deptReqTableContainer" style="overflow-x: auto;"></div>
+            <button class="button is-success is-small mt-3" onclick="addDeptReqEntry()">
+                <span class="icon"><i class="fas fa-plus"></i></span><span>新增項目</span>
+            </button>
+        </section>
+        <footer class="modal-card-foot py-3" style="justify-content: space-between;">
+            <button class="button is-light is-small" onclick="resetDeptReqData()">
+                <span class="icon"><i class="fas fa-undo"></i></span><span>恢復系統預設值</span>
+            </button>
+            <button class="button is-primary is-small" onclick="closeDeptReqModal()">完成</button>
         </footer>
     </div>
 </div>

@@ -735,12 +735,17 @@ function renderTimetable() {
     
     const IDEAL_TRACK_WIDTH = 60; const SIDEBAR_WIDTH = 220; const TIME_COL_WIDTH = 45; const MARGINS = 80;
     const isExportMode = document.body.classList.contains('is-exporting');
+    const isMobile = window.innerWidth <= 768;
     let idealTableWidth = TIME_COL_WIDTH + (totalTracks * IDEAL_TRACK_WIDTH);
     let baseWidth = isExportMode ? 2000 : window.innerWidth;
-    let maxAvailableWidth = isExportMode ? (2000 - MARGINS) : (baseWidth - SIDEBAR_WIDTH - MARGINS);
+    let effectiveSidebar = (isExportMode || isMobile) ? 0 : SIDEBAR_WIDTH;
+    let maxAvailableWidth = isExportMode ? (2000 - MARGINS) : (isMobile ? idealTableWidth : (baseWidth - effectiveSidebar - MARGINS));
     let finalTableWidth = Math.min(idealTableWidth, maxAvailableWidth);
-    let newAppWidth = (isExportMode ? 0 : SIDEBAR_WIDTH) + MARGINS + finalTableWidth;
-    if (!isExportMode) appContainer.style.width = `${Math.max(800, newAppWidth)}px`;
+    let newAppWidth = effectiveSidebar + MARGINS + finalTableWidth;
+    if (!isExportMode) {
+        if (isMobile) appContainer.style.width = '';
+        else appContainer.style.width = `${Math.max(800, newAppWidth)}px`;
+    }
 
     let colTime = document.createElement('col'); colTime.style.width = `${TIME_COL_WIDTH}px`; colgroup.appendChild(colTime);
     let availableForCourses = finalTableWidth - TIME_COL_WIDTH;

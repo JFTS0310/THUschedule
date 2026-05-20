@@ -792,6 +792,7 @@ function exportImage(type) {
             element.style.width = originalElementWidth; element.style.height = originalElementHeight; element.style.overflow = originalElementOverflow;
             document.body.style.backgroundColor = ''; header.style.display = 'none';
             if(typeof render === 'function') render();
+            if(typeof adjustCourseFonts === 'function') adjustCourseFonts();
 
             let filename = `東海電機_${currentYear}學年_${semText}_課表_${new Date().toISOString().slice(0,10)}`;
             if (type === 'png') {
@@ -822,6 +823,7 @@ function exportImage(type) {
             if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; mainContent.style.height = originalMainHeight; }
             element.style.width = originalElementWidth; element.style.height = originalElementHeight; element.style.overflow = originalElementOverflow;
             document.body.style.backgroundColor = ''; header.style.display = 'none';
+            if(typeof adjustCourseFonts === 'function') adjustCourseFonts();
             console.error(err); Swal.fire('錯誤', '圖片產生失敗', 'error');
         });
     }, 100);

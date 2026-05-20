@@ -759,26 +759,37 @@ function exportImage(type) {
     let semText = settings.currentSemester == 1 ? "上學期" : "下學期";
     header.innerHTML = `東海電機 ${currentYear}學年 ${semText} 課表`; header.style.display = 'block';
 
+    const EXPORT_H = 810; // 固定匯出高度，與桌機版比例一致
+
     const originalSidebarDisplay = sidebar.style.display;
-    const originalContainerWidth = appContainer.style.width; const originalContainerMaxWidth = appContainer.style.maxWidth;
-    const originalElementWidth = element.style.width; const originalElementOverflow = element.style.overflow;
+    const originalContainerWidth = appContainer.style.width;
+    const originalContainerMaxWidth = appContainer.style.maxWidth;
+    const originalContainerHeight = appContainer.style.height;
+    const originalElementWidth = element.style.width;
+    const originalElementHeight = element.style.height;
+    const originalElementOverflow = element.style.overflow;
     const originalMainWidth = mainContent ? mainContent.style.width : '';
     const originalMainMax = mainContent ? mainContent.style.maxWidth : '';
+    const originalMainHeight = mainContent ? mainContent.style.height : '';
 
     document.body.classList.add('is-exporting');
-    sidebar.style.display = 'none'; appContainer.style.width = '2000px'; appContainer.style.maxWidth = 'none';
-    if (mainContent) { mainContent.style.width = '2000px'; mainContent.style.maxWidth = 'none'; }
-    element.style.width = '2000px'; element.style.overflow = 'visible'; document.body.style.backgroundColor = '#e0e0e0';
+    sidebar.style.display = 'none';
+    appContainer.style.width = '2000px'; appContainer.style.maxWidth = 'none'; appContainer.style.height = EXPORT_H + 'px';
+    if (mainContent) { mainContent.style.width = '2000px'; mainContent.style.maxWidth = 'none'; mainContent.style.height = EXPORT_H + 'px'; }
+    element.style.width = '2000px'; element.style.height = EXPORT_H + 'px'; element.style.overflow = 'hidden';
+    document.body.style.backgroundColor = '#e0e0e0';
 
     if(typeof render === 'function') render();
 
     Swal.fire({ title: '處理中...', text: '正在產生高解析度圖片，請稍候', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     setTimeout(() => {
-        html2canvas(element, { scale: 2, useCORS: true, width: 2000, windowWidth: 2000 }).then(canvas => {
+        html2canvas(element, { scale: 2, useCORS: true, width: 2000, height: EXPORT_H, windowWidth: 2000 }).then(canvas => {
             document.body.classList.remove('is-exporting');
-            sidebar.style.display = originalSidebarDisplay; appContainer.style.width = originalContainerWidth; appContainer.style.maxWidth = originalContainerMaxWidth;
-            if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; }
-            element.style.width = originalElementWidth; element.style.overflow = originalElementOverflow; document.body.style.backgroundColor = ''; header.style.display = 'none';
+            sidebar.style.display = originalSidebarDisplay;
+            appContainer.style.width = originalContainerWidth; appContainer.style.maxWidth = originalContainerMaxWidth; appContainer.style.height = originalContainerHeight;
+            if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; mainContent.style.height = originalMainHeight; }
+            element.style.width = originalElementWidth; element.style.height = originalElementHeight; element.style.overflow = originalElementOverflow;
+            document.body.style.backgroundColor = ''; header.style.display = 'none';
             if(typeof render === 'function') render();
 
             let filename = `東海電機_${currentYear}學年_${semText}_課表_${new Date().toISOString().slice(0,10)}`;
@@ -805,7 +816,9 @@ function exportImage(type) {
             }
         }).catch(err => {
             document.body.classList.remove('is-exporting');
-            if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; }
+            appContainer.style.height = originalContainerHeight;
+            if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; mainContent.style.height = originalMainHeight; }
+            element.style.height = originalElementHeight;
             console.error(err); Swal.fire('錯誤', '圖片產生失敗', 'error');
         });
     }, 100);

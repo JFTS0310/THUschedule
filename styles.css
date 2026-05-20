@@ -737,28 +737,32 @@ body.dark-mode .mobile-overlay {
     background: rgba(0, 0, 0, 0.7);
 }
 
-/* ===== 匯出模式：強制桌機版寬度渲染 ===== */
+/* ===== 匯出模式：強制桌機版寬高渲染 ===== */
 body.is-exporting .app-container {
     flex-direction: row !important;
     width: 2000px !important;
     max-width: 2000px !important;
-    height: 90vh !important;
+    height: 810px !important;
 }
 body.is-exporting .main-content {
     width: auto !important;
     max-width: none !important;
+    height: 810px !important;
     overflow: hidden !important;
     flex: 1 !important;
 }
 body.is-exporting .timetable-container {
     overflow: hidden !important;
-    height: 100% !important;
+    height: 810px !important;
+    width: 100% !important;
 }
 body.is-exporting .screenshot-wrapper {
     min-width: unset !important;
-    height: 100% !important;
+    height: 810px !important;
+    width: 100% !important;
 }
 body.is-exporting .timetable {
     min-width: unset !important;
-    height: 100% !important;
+    height: 810px !important;
+    width: 100% !important;
 }

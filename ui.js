@@ -733,9 +733,9 @@ function renderTimetable() {
     let colLayouts = dayCols.map(col => calculateColumnLayout(col.d, col.g));
     let totalTracks = colLayouts.reduce((acc, curr) => acc + curr.maxTracks, 0);
     
-    const IDEAL_TRACK_WIDTH = 60; const SIDEBAR_WIDTH = 220; const TIME_COL_WIDTH = 45; const MARGINS = 80;
     const isExportMode = document.body.classList.contains('is-exporting');
     const isMobile = window.innerWidth <= 768;
+    const IDEAL_TRACK_WIDTH = isMobile ? 46 : 60; const SIDEBAR_WIDTH = 220; const TIME_COL_WIDTH = 40; const MARGINS = 80;
     let idealTableWidth = TIME_COL_WIDTH + (totalTracks * IDEAL_TRACK_WIDTH);
     let baseWidth = isExportMode ? 2000 : window.innerWidth;
     let effectiveSidebar = (isExportMode || isMobile) ? 0 : SIDEBAR_WIDTH;

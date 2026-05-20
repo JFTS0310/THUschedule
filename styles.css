@@ -598,6 +598,10 @@ body.dark-mode .course-block-preview {
         height: 22px;
     }
 
+    .timetable td {
+        height: 72px;
+    }
+
     /* 手機版 Modal：底部彈出式 bottom-sheet */
     .modal {
         z-index: 250 !important;

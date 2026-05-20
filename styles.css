@@ -742,28 +742,28 @@ body.is-exporting .app-container {
     flex-direction: row !important;
     width: 2000px !important;
     max-width: 2000px !important;
-    height: 810px !important;
+    height: auto !important;
 }
 body.is-exporting .main-content {
     width: auto !important;
     max-width: none !important;
-    height: 810px !important;
-    overflow: hidden !important;
+    height: auto !important;
+    overflow: visible !important;
     flex: 1 !important;
 }
 body.is-exporting .timetable-container {
-    overflow: hidden !important;
-    height: 810px !important;
+    overflow: visible !important;
+    height: auto !important;
     width: 100% !important;
 }
 body.is-exporting .screenshot-wrapper {
     min-width: unset !important;
-    height: 810px !important;
+    height: auto !important;
     width: 100% !important;
 }
 body.is-exporting .timetable {
     min-width: unset !important;
-    height: 810px !important;
+    height: auto !important;
     width: 100% !important;
     font-size: 13px !important;   /* 覆蓋手機版 10px */
 }

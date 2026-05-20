@@ -759,8 +759,6 @@ function exportImage(type) {
     let semText = settings.currentSemester == 1 ? "上學期" : "下學期";
     header.innerHTML = `東海電機 ${currentYear}學年 ${semText} 課表`; header.style.display = 'block';
 
-    const EXPORT_H = 810; // 固定匯出高度，與桌機版比例一致
-
     const originalSidebarDisplay = sidebar.style.display;
     const originalContainerWidth = appContainer.style.width;
     const originalContainerMaxWidth = appContainer.style.maxWidth;
@@ -774,9 +772,9 @@ function exportImage(type) {
 
     document.body.classList.add('is-exporting');
     sidebar.style.display = 'none';
-    appContainer.style.width = '2000px'; appContainer.style.maxWidth = 'none'; appContainer.style.height = EXPORT_H + 'px';
-    if (mainContent) { mainContent.style.width = '2000px'; mainContent.style.maxWidth = 'none'; mainContent.style.height = EXPORT_H + 'px'; }
-    element.style.width = '2000px'; element.style.height = EXPORT_H + 'px'; element.style.overflow = 'hidden';
+    appContainer.style.width = '2000px'; appContainer.style.maxWidth = 'none'; appContainer.style.height = 'auto';
+    if (mainContent) { mainContent.style.width = '2000px'; mainContent.style.maxWidth = 'none'; mainContent.style.height = 'auto'; }
+    element.style.width = '2000px'; element.style.height = 'auto'; element.style.overflow = 'visible';
     document.body.style.backgroundColor = '#e0e0e0';
 
     if(typeof render === 'function') render();
@@ -785,7 +783,8 @@ function exportImage(type) {
     setTimeout(() => {
         // 在 2000px 版面穩定後重新計算字體大小
         if (typeof adjustCourseFonts === 'function') adjustCourseFonts();
-        html2canvas(element, { scale: 2, useCORS: true, width: 2000, height: EXPORT_H, windowWidth: 2000 }).then(canvas => {
+        const actualH = Math.max(element.scrollHeight, element.offsetHeight, 810);
+        html2canvas(element, { scale: 2, useCORS: true, width: 2000, height: actualH, windowWidth: 2000 }).then(canvas => {
             document.body.classList.remove('is-exporting');
             sidebar.style.display = originalSidebarDisplay;
             appContainer.style.width = originalContainerWidth; appContainer.style.maxWidth = originalContainerMaxWidth; appContainer.style.height = originalContainerHeight;
@@ -818,9 +817,11 @@ function exportImage(type) {
             }
         }).catch(err => {
             document.body.classList.remove('is-exporting');
-            appContainer.style.height = originalContainerHeight;
+            sidebar.style.display = originalSidebarDisplay;
+            appContainer.style.width = originalContainerWidth; appContainer.style.maxWidth = originalContainerMaxWidth; appContainer.style.height = originalContainerHeight;
             if (mainContent) { mainContent.style.width = originalMainWidth; mainContent.style.maxWidth = originalMainMax; mainContent.style.height = originalMainHeight; }
-            element.style.height = originalElementHeight;
+            element.style.width = originalElementWidth; element.style.height = originalElementHeight; element.style.overflow = originalElementOverflow;
+            document.body.style.backgroundColor = ''; header.style.display = 'none';
             console.error(err); Swal.fire('錯誤', '圖片產生失敗', 'error');
         });
     }, 100);

@@ -743,6 +743,7 @@ body.is-exporting .app-container {
     width: 2000px !important;
     max-width: 2000px !important;
     height: auto !important;
+    overflow: visible !important;
 }
 body.is-exporting .main-content {
     width: auto !important;
@@ -760,10 +761,11 @@ body.is-exporting .screenshot-wrapper {
     min-width: unset !important;
     height: auto !important;
     width: 100% !important;
+    overflow: visible !important;
 }
 body.is-exporting .timetable {
     min-width: unset !important;
-    height: auto !important;
+    height: 810px !important;
     width: 100% !important;
     font-size: 13px !important;   /* 覆蓋手機版 10px */
 }

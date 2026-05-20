@@ -158,6 +158,13 @@
             </div>
         </div>
 
+        <div class="mobile-zoom-bar" id="mobileZoomBar">
+            <button class="zoom-btn" onclick="adjustMobileZoom(-0.1)"><i class="fas fa-search-minus"></i></button>
+            <input type="range" id="mobileZoomSlider" min="40" max="150" value="100" oninput="setMobileZoomFromSlider(this.value)">
+            <span id="mobileZoomLabel">100%</span>
+            <button class="zoom-btn" onclick="adjustMobileZoom(0.1)"><i class="fas fa-search-plus"></i></button>
+        </div>
+
         <div class="timetable-container" id="captureTarget">
             <div class="screenshot-wrapper">
                 <div class="screenshot-header" id="screenshotHeader"></div>

@@ -1785,6 +1785,8 @@ window.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
         }
     }, { passive: false });
+
+    initMobileZoom();
 });
 
 function toggleMobileSidebar() {
@@ -1870,4 +1872,39 @@ function mobileNavTo(tab) {
             }, 400);
             break;
     }
+}
+
+// ===== 手機版整體縮放功能 =====
+let _mobileZoom = 1.0;
+const _ZOOM_KEY = 'mobileZoomLevel';
+
+function initMobileZoom() {
+    if (window.innerWidth > 768) return;
+    const saved = parseFloat(localStorage.getItem(_ZOOM_KEY));
+    if (!isNaN(saved) && saved >= 0.4 && saved <= 1.5) {
+        _mobileZoom = saved;
+    }
+    _applyMobileZoom();
+}
+
+function _applyMobileZoom() {
+    const wrapper = document.querySelector('.screenshot-wrapper');
+    if (wrapper) wrapper.style.zoom = _mobileZoom;
+
+    const label = document.getElementById('mobileZoomLabel');
+    const slider = document.getElementById('mobileZoomSlider');
+    if (label) label.textContent = Math.round(_mobileZoom * 100) + '%';
+    if (slider) slider.value = Math.round(_mobileZoom * 100);
+
+    localStorage.setItem(_ZOOM_KEY, _mobileZoom);
+}
+
+function adjustMobileZoom(delta) {
+    _mobileZoom = Math.max(0.4, Math.min(1.5, Math.round((_mobileZoom + delta) * 100) / 100));
+    _applyMobileZoom();
+}
+
+function setMobileZoomFromSlider(value) {
+    _mobileZoom = parseFloat(value) / 100;
+    _applyMobileZoom();
 }

@@ -602,6 +602,47 @@ body.dark-mode .course-block-preview {
         height: 72px;
     }
 
+    /* 縮放控制列 */
+    .mobile-zoom-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        background: rgba(255,255,255,0.97);
+        border-radius: 10px;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.12);
+        margin-bottom: 5px;
+        flex-shrink: 0;
+    }
+    .zoom-btn {
+        border: none;
+        background: #eee;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: #333;
+        cursor: pointer;
+        flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .zoom-btn:active { background: #d0d0d0; }
+    #mobileZoomSlider {
+        flex: 1;
+        accent-color: #3273dc;
+        height: 4px;
+    }
+    #mobileZoomLabel {
+        font-size: 11px;
+        min-width: 36px;
+        text-align: center;
+        color: #555;
+        flex-shrink: 0;
+    }
+
     /* 手機版 Modal：底部彈出式 bottom-sheet */
     .modal {
         z-index: 250 !important;
@@ -726,6 +767,9 @@ body.dark-mode .course-block-preview {
     .mobile-overlay {
         display: none !important;
     }
+    .mobile-zoom-bar {
+        display: none !important;
+    }
 }
 
 /* 手機深色模式 */
@@ -742,8 +786,22 @@ body.dark-mode .mobile-nav-item.is-active {
 body.dark-mode .mobile-overlay {
     background: rgba(0, 0, 0, 0.7);
 }
+body.dark-mode .mobile-zoom-bar {
+    background: rgba(42,42,42,0.97);
+    color: #ddd;
+}
+body.dark-mode .zoom-btn {
+    background: #444;
+    color: #ddd;
+}
+body.dark-mode .zoom-btn:active { background: #555; }
+body.dark-mode #mobileZoomLabel { color: #bbb; }
 
 /* ===== 匯出模式：強制桌機版寬高渲染 ===== */
+body.is-exporting .screenshot-wrapper {
+    zoom: 1 !important;
+}
+
 body.is-exporting .app-container {
     flex-direction: row !important;
     width: 2000px !important;
